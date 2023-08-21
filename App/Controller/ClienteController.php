@@ -8,4 +8,19 @@ class ClienteController extends Controller
     {
         parent::render('Cliente/ClienteCadastro');
     }
+
+    static public function Save() 
+    {
+        
+    }
+
+    static public function List()
+    {
+        
+    }
+
+    static public function Delete()
+    {
+
+    }
 }
