@@ -6,7 +6,7 @@ class AnimalController extends Controller
 {
     static public function Index()
     {
-        parent::render('Animal/AnimalController');
+        parent::render('Animal/AnimalCadastro');
     }
 
     static public function Save() 

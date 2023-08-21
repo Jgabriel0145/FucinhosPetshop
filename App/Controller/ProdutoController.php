@@ -6,7 +6,7 @@ class ProdutoController extends Controller
 {
     static public function Index()
     {
-        parent::render('Produto/ProdutoController');
+        parent::render('Produto/ProdutoCadastro');
     }
 
     static public function Save() 
