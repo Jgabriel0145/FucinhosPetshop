@@ -16,7 +16,7 @@ class AnimalController extends Controller
 
     static public function List()
     {
-        
+        parent::render('Animal/AnimalListagem');
     }
 
     static public function Delete()

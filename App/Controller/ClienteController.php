@@ -16,7 +16,7 @@ class ClienteController extends Controller
 
     static public function List()
     {
-        
+        parent::render('Cliente/ClienteListagem');
     }
 
     static public function Delete()
