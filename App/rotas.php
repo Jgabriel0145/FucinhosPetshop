@@ -10,6 +10,9 @@ switch ($url)
         ClienteController::Index();
         break;
 
+    case '':
+        break;
+
     default:
         echo 'teste';
         break;
