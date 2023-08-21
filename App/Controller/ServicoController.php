@@ -16,7 +16,7 @@ class ServicoController extends Controller
 
     static public function List()
     {
-        
+        parent::render('Servico/ServicoListagem');
     }
 
     static public function Delete()

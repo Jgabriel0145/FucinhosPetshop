@@ -16,7 +16,7 @@ class VendaController extends Controller
 
     static public function List()
     {
-        
+        parent::render('Venda/VendaListagem');
     }
 
     static public function Delete()
