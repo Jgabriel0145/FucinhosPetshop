@@ -97,6 +97,6 @@ switch ($url)
 
 
     default:
-        include '/App/Views/Inicio.php';
+        include BASEDIR . "/App/Views/Inicio.php";
         break;
 }
