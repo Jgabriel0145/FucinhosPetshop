@@ -14,7 +14,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema db_petshop
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `db_petshop` ;
+CREATE SCHEMA IF NOT EXISTS `db_petshop` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 USE `db_petshop` ;
 
 -- -----------------------------------------------------
@@ -22,13 +22,15 @@ USE `db_petshop` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `db_petshop`.`cliente` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `nome` VARCHAR(100) NULL,
-  `cpf` CHAR(11) NULL,
-  `telefone` CHAR(11) NULL,
-  `data_nascimento` DATE NULL,
-  `endereco` VARCHAR(150) NULL,
+  `nome` VARCHAR(100) NULL DEFAULT NULL,
+  `cpf` CHAR(11) NULL DEFAULT NULL,
+  `telefone` CHAR(11) NULL DEFAULT NULL,
+  `data_nascimento` DATE NULL DEFAULT NULL,
+  `endereco` VARCHAR(150) NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
-ENGINE = InnoDB;
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
@@ -36,52 +38,34 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `db_petshop`.`animal` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `nome` VARCHAR(50) NULL,
-  `raca` VARCHAR(45) NULL,
-  `id_cliente` INT NULL,
+  `nome` VARCHAR(50) NULL DEFAULT NULL,
+  `raca` VARCHAR(45) NULL DEFAULT NULL,
+  `id_cliente` INT NULL DEFAULT NULL,
   `peso` DOUBLE NOT NULL,
   `porte` ENUM('P', 'M', 'G') NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_animal_cliente_idx` (`id_cliente` ASC) VISIBLE,
   CONSTRAINT `fk_animal_cliente`
     FOREIGN KEY (`id_cliente`)
-    REFERENCES `db_petshop`.`cliente` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    REFERENCES `db_petshop`.`cliente` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `db_petshop`.`animal`
+-- Table `db_petshop`.`produto`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `db_petshop`.`animal` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `nome` VARCHAR(50) NULL,
-  `raca` VARCHAR(45) NULL,
-  `id_cliente` INT NULL,
-  `peso` DOUBLE NOT NULL,
-  `porte` ENUM('P', 'M', 'G') NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_animal_cliente_idx` (`id_cliente` ASC) VISIBLE,
-  CONSTRAINT `fk_animal_cliente`
-    FOREIGN KEY (`id_cliente`)
-    REFERENCES `db_petshop`.`cliente` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `db_petshop`.`produtos`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `db_petshop`.`produtos` (
+CREATE TABLE IF NOT EXISTS `db_petshop`.`produto` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `descricao` VARCHAR(50) NOT NULL,
   `preco` DOUBLE NOT NULL,
-  `data_validade` DATE NULL,
+  `data_validade` DATE NULL DEFAULT NULL,
   `estoque` INT NOT NULL,
   PRIMARY KEY (`id`))
-ENGINE = InnoDB;
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
@@ -91,15 +75,15 @@ CREATE TABLE IF NOT EXISTS `db_petshop`.`servico` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `data_servico` DATETIME NOT NULL,
   `descricao` VARCHAR(50) NOT NULL,
-  `id_cliente` INT NULL,
+  `id_cliente` INT NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_servico_cliente_idx` (`id_cliente` ASC) VISIBLE,
   CONSTRAINT `fk_servico_cliente`
     FOREIGN KEY (`id_cliente`)
-    REFERENCES `db_petshop`.`cliente` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    REFERENCES `db_petshop`.`cliente` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
@@ -107,29 +91,25 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `db_petshop`.`venda_produto_servico_assoc` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `id_produto` INT NULL,
-  `id_servico` INT NULL,
-  `id_cliente` INT NULL,
+  `id_produto` INT NULL DEFAULT NULL,
+  `id_servico` INT NULL DEFAULT NULL,
+  `id_cliente` INT NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_produto_venda_assoc_idx` (`id_produto` ASC) VISIBLE,
   INDEX `fk_cliente_venda_assoc_idx` (`id_cliente` ASC) VISIBLE,
   INDEX `fk_servico_venda_assoc_idx` (`id_servico` ASC) VISIBLE,
-  CONSTRAINT `fk_produto_venda_assoc`
-    FOREIGN KEY (`id_produto`)
-    REFERENCES `db_petshop`.`produtos` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
   CONSTRAINT `fk_cliente_venda_assoc`
     FOREIGN KEY (`id_cliente`)
-    REFERENCES `db_petshop`.`cliente` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    REFERENCES `db_petshop`.`cliente` (`id`),
+  CONSTRAINT `fk_produto_venda_assoc`
+    FOREIGN KEY (`id_produto`)
+    REFERENCES `db_petshop`.`produto` (`id`),
   CONSTRAINT `fk_servico_venda_assoc`
     FOREIGN KEY (`id_servico`)
-    REFERENCES `db_petshop`.`servico` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    REFERENCES `db_petshop`.`servico` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
@@ -143,10 +123,10 @@ CREATE TABLE IF NOT EXISTS `db_petshop`.`venda` (
   INDEX `fk_venda_produto_servico_idx` (`id_produto_servico` ASC) VISIBLE,
   CONSTRAINT `fk_venda_produto_servico`
     FOREIGN KEY (`id_produto_servico`)
-    REFERENCES `db_petshop`.`venda_produto_servico_assoc` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    REFERENCES `db_petshop`.`venda_produto_servico_assoc` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
