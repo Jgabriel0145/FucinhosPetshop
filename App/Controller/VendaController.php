@@ -6,7 +6,7 @@ class VendaController extends Controller
 {
     static public function Index()
     {
-        parent::render('Venda/VendaController');
+        parent::render('Venda/VendaCadastro');
     }
 
     static public function Save() 

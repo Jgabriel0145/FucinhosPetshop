@@ -6,7 +6,7 @@ class ServicoController extends Controller
 {
     static public function Index()
     {
-        parent::render('Servico/ServicoController');
+        parent::render('Servico/ServicoCadastro');
     }
 
     static public function Save() 
