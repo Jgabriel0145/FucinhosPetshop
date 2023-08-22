@@ -2,25 +2,48 @@
 
 namespace App\Controller;
 
+use App\Model\ClienteModel;
+
 class ClienteController extends Controller
 {
-    static public function Index()
+    static public function Form()
     {
-        parent::render('Cliente/ClienteCadastro');
+        $model = new ClienteModel();
+
+        if (isset($_GET['id'])) $model = $model->SearchById((int) $_GET['id']);
+
+        parent::render('Cliente/ClienteCadastro', $model);
     }
 
     static public function Save() 
     {
-        
+        $model = new ClienteModel();
+
+        $model->id = $_POST['id'];
+        $model->nome = $_POST['nome_cliente'];
+        $model->cpf = $_POST['cpf_cliente'];
+        $model->telefone = $_POST['telefone_cliente'];
+        $model->data_nascimento = $_POST['data_nascimento_cliente'];
+        $model->endereco = $_POST['endereco_cliente'];
+
+        $model->Save();
+
+        header('Location: /cliente/listagem');
     }
 
     static public function List()
     {
-        parent::render('Cliente/ClienteListagem');
+        $model = new ClienteModel();
+
+        $model->GetAllRows();
+
+        parent::render('Cliente/ClienteListagem', $model);
     }
 
     static public function Delete()
     {
+        (new ClienteModel())->Delete((int) $_GET['id']);
 
+        header('Location: /cliente/listagem');
     }
 }

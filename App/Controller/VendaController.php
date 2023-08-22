@@ -4,7 +4,7 @@ namespace App\Controller;
 
 class VendaController extends Controller
 {
-    static public function Index()
+    static public function Form()
     {
         parent::render('Venda/VendaCadastro');
     }
