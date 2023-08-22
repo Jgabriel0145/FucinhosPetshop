@@ -4,7 +4,7 @@ namespace App\Controller;
 
 class ProdutoController extends Controller
 {
-    static public function Index()
+    static public function Form()
     {
         parent::render('Produto/ProdutoCadastro');
     }

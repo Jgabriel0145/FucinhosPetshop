@@ -8,7 +8,7 @@ switch ($url)
 {
     //Animal
     case '/animal/cadastro':
-        AnimalController::Index();
+        AnimalController::Form();
         break;
 
     case '/animal/cadastro/save':
@@ -26,7 +26,7 @@ switch ($url)
 
     //Cliente
     case '/cliente/cadastro':
-        ClienteController::Index();
+        ClienteController::Form();
         break;
 
     case '/cliente/cadastro/save':
@@ -44,7 +44,7 @@ switch ($url)
     
     //Produto
     case '/produto/cadastro':
-        ProdutoController::Index();
+        ProdutoController::Form();
         break;
 
     case '/produto/cadastro/save':
@@ -62,7 +62,7 @@ switch ($url)
 
     //Servico
     case '/servico/cadastro':
-        ServicoController::Index();
+        ServicoController::Form();
         break;
 
     case '/servico/cadastro/save':
@@ -80,7 +80,7 @@ switch ($url)
     
     //Venda
     case '/venda/cadastro':
-        VendaController::Index();
+        VendaController::Form();
         break;
 
     case '/venda/cadastro/save':
