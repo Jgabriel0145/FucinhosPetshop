@@ -46,7 +46,7 @@ class AnimalDAO extends DAO
 
     public function Select()
     {
-        $sql = 'SELECT * FROM animal a JOIN cliente c ON (a.id_cliente = c.id) ORDER BY a.id;';
+        $sql = 'SELECT a.*, a.id as id_animal, a.nome as nome_animal, c.*, c.nome as nome_cliente FROM animal a JOIN cliente c ON (a.id_cliente = c.id) ORDER BY a.id;';
 
         $stmt = $this->conexao->prepare($sql);
 

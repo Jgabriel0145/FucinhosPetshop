@@ -19,10 +19,10 @@
         <input type="text" name="nome_cliente" id="nome_cliente" value="<?= $model->nome ?>">
 
         <label for="cpf_cliente">CPF</label>
-        <input type="text" name="cpf_cliente" id="cpf_cliente" value="<?= $model->cpf ?>">
+        <input type="text" name="cpf_cliente" id="cpf_cliente" value="<?= $model->cpf ?>" maxlength="11">
 
         <label for="telefone_cliente">Telefone</label>
-        <input type="text" name="telefone_cliente" id="telefone_cliente" value="<?= $model->telefone ?>">
+        <input type="text" name="telefone_cliente" id="telefone_cliente" value="<?= $model->telefone ?>" maxlength="11">
         
         <label for="data_nascimento_cliente">Data de Nascimento</label>
         <input type="date" name="data_nascimento_cliente" id="data_nascimento_cliente" value="<?= $model->data_nascimento ?>">
