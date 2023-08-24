@@ -32,7 +32,7 @@
         <input type="text" name="peso_animal" id="peso_animal" value="<?= $model_animal->peso ?>">
         
         <label for="pequeno_porte_animal">Pequeno</label>
-        <input type="radio" id="pequeno_porte_animal" name="porte_animal" value="P">
+        <input type="radio" id="pequeno_porte_animal" name="porte_animal" value="P" checked>
         
         <label for="medio_porte_animal">Médio</label>
         <input type="radio" id="medio_porte_animal" name="porte_animal" value="M">
