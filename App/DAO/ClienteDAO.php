@@ -51,10 +51,10 @@ class ClienteDAO extends DAO
 
         $stmt->execute();
 
-        return $stmt->fetchAll(PDO::FETCH_CLASS);
+        return $stmt->fetchAll(DAO::FETCH_CLASS, 'App\Model\ClienteModel');
     }
 
-    public function SearchById($id)
+    public function SearchById($id) : ClienteModel
     {
         $sql = 'SELECT * FROM cliente WHERE id = ?';
 
@@ -64,7 +64,22 @@ class ClienteDAO extends DAO
 
         $stmt->execute();
 
-        return $stmt->fetchObject('App\Model\ClienteModel');
+        $objeto = $stmt->fetchObject('App\Model\ClienteModel');
+
+        return is_object($objeto) ? $objeto : new ClienteModel();
+    }
+
+    public function SearchByName($query)
+    {
+        $str_query = ['filtro' => '%' . $query . '%'];
+
+        $sql = 'SELECT * FROM cliente WHERE nome LIKE :filtro';
+
+        $stmt = $this->conexao->prepare($sql);
+
+        $stmt->execute($str_query);
+
+        return $stmt->fetchAll(DAO::FETCH_CLASS, 'App\Model\ClienteModel');
     }
 
     public function Delete($id)

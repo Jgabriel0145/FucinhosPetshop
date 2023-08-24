@@ -22,9 +22,7 @@ class ClienteModel extends Model
 
     public function SearchById($id)
     {
-        $objeto = (new ClienteDAO())->SearchById($id);
-
-        return ($objeto) ? $objeto : new ClienteModel();
+        return (new ClienteDAO())->SearchById($id);
     }
 
     public function Delete($id)

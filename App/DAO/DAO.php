@@ -2,28 +2,41 @@
 
 namespace App\DAO;
 
-use \PDO;
-
 use Exception;
+use \PDO;
+use PDOException;
 
-abstract class DAO
+abstract class DAO extends PDO
 {
     protected $conexao;
-
+    
     public function __construct()
-    {   
-        //Apenas alterando a porta do localhost de 3307 para 3306
+    {
         try
         {
-            $dsn = "mysql:host=" . $_ENV['db']['host'] . ";dbname=" . $_ENV['db']['database'];
-            $this->conexao = new PDO($dsn, $_ENV['db']['user'], $_ENV['db']['pass']);
-        }
-        catch(Exception $ex)
-        {
-            $_ENV['db']['host'] = 'localhost:3306';
+            $options = [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'
+            ];
+
+            try
+            {
+                $dsn = "mysql:host=" . $_ENV['db']['host'] . ";dbname=" . $_ENV['db']['database'];
+                $this->conexao = new PDO($dsn, $_ENV['db']['user'], $_ENV['db']['pass'], $options);
+            }
+            catch (Exception $e)
+            {
+                $_ENV['db']['host'] = 'localhost:3306';
+                
+                $dsn = "mysql:host=" . $_ENV['db']['host'] . ";dbname=" . $_ENV['db']['database'];
+                $this->conexao = new PDO($dsn, $_ENV['db']['user'], $_ENV['db']['pass'], $options);
+            }
             
-            $dsn = "mysql:host=" . $_ENV['db']['host'] . ";dbname=" . $_ENV['db']['database'];
-            $this->conexao = new PDO($dsn, $_ENV['db']['user'], $_ENV['db']['pass']);
         }
+        catch (PDOException $e)
+        {
+            throw new Exception("Ocorreu um erro ao tentar conectar ao Mysql.", 0, $e);
+        }
+
     }
 }
