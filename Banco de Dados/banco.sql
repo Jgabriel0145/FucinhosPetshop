@@ -29,6 +29,7 @@ CREATE TABLE IF NOT EXISTS `db_petshop`.`cliente` (
   `endereco` VARCHAR(150) NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -40,15 +41,16 @@ CREATE TABLE IF NOT EXISTS `db_petshop`.`animal` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(50) NULL DEFAULT NULL,
   `raca` VARCHAR(45) NULL DEFAULT NULL,
-  `id_cliente` INT NULL DEFAULT NULL,
   `peso` DOUBLE NOT NULL,
   `porte` ENUM('P', 'M', 'G') NOT NULL,
+  `id_cliente` INT NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_animal_cliente_idx` (`id_cliente` ASC) VISIBLE,
   CONSTRAINT `fk_animal_cliente`
     FOREIGN KEY (`id_cliente`)
     REFERENCES `db_petshop`.`cliente` (`id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -64,6 +66,7 @@ CREATE TABLE IF NOT EXISTS `db_petshop`.`produto` (
   `estoque` INT NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -82,6 +85,7 @@ CREATE TABLE IF NOT EXISTS `db_petshop`.`servico` (
     FOREIGN KEY (`id_cliente`)
     REFERENCES `db_petshop`.`cliente` (`id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -108,6 +112,7 @@ CREATE TABLE IF NOT EXISTS `db_petshop`.`venda_produto_servico_assoc` (
     FOREIGN KEY (`id_servico`)
     REFERENCES `db_petshop`.`servico` (`id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -125,6 +130,7 @@ CREATE TABLE IF NOT EXISTS `db_petshop`.`venda` (
     FOREIGN KEY (`id_produto_servico`)
     REFERENCES `db_petshop`.`venda_produto_servico_assoc` (`id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 

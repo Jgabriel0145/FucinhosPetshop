@@ -45,7 +45,7 @@ class ClienteDAO extends DAO
 
     public function Select()
     {
-        $sql = 'SELECT * FROM cliente';
+        $sql = 'SELECT * FROM cliente ORDER BY cliente.id';
 
         $stmt = $this->conexao->prepare($sql);
 
@@ -73,7 +73,7 @@ class ClienteDAO extends DAO
     {
         $str_query = ['filtro' => '%' . $query . '%'];
 
-        $sql = 'SELECT * FROM cliente WHERE nome LIKE :filtro';
+        $sql = 'SELECT * FROM cliente WHERE nome LIKE :filtro ORDER BY cliente.nome';
 
         $stmt = $this->conexao->prepare($sql);
 
