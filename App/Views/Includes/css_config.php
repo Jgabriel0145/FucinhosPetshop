@@ -48,6 +48,7 @@
             height: 100%;
             list-style-type: none;
             width: 100%;
+            padding-left: 10px;
         }
 
         .menu-principal li.item-menu a {
@@ -69,6 +70,7 @@
 
         .menu-principal li.item-menu a .icon {
             font-size: 30px;
+            margin-left: 20px;
         }
 
         .menu-principal li.item-menu{
