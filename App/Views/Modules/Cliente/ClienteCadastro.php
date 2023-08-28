@@ -15,7 +15,7 @@
     </div>
       <ul class="menu-principal">
         <li class="item-menu" id="inicio">
-          <a href="#">
+          <a href="/">
             <span class="icon"><i class="bi bi-house"></i></span>
             <span class="txt-link">Inicio</span>
           </a>
@@ -47,7 +47,6 @@
       </ul>
     </div>
   </nav><!-- menu lateral -->
-
 
 
     <!-- FIM DA SIDEBAR -->
