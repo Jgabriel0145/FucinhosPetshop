@@ -16,7 +16,7 @@ class ProdutoDAO extends DAO
 
     public function Insert(ProdutoModel $model)
     {
-
+        
     }
 
     public function Update(ProdutoModel $model)
@@ -36,6 +36,6 @@ class ProdutoDAO extends DAO
 
     public function SearchByName()
     {
-        
+
     }
 }
