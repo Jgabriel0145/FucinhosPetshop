@@ -52,7 +52,7 @@ class AnimalDAO extends DAO
 
         $stmt->execute();
 
-        return $stmt->fetchAll(DAO::FETCH_CLASS, 'App\Model\AnimalModel');
+        return $stmt->fetchAll(DAO::FETCH_CLASS);
     }
 
     public function SearchById(int $id)

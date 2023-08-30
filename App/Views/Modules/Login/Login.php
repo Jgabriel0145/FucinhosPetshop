@@ -7,5 +7,7 @@
 </head>
 <body>
     
+    <img src="/Views/Includes/Imagens/LogoPetShop.png">
+
 </body>
 </html>
