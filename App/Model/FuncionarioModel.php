@@ -10,6 +10,23 @@ class FuncionarioModel extends Model
 
     public function Save()
     {
-        (new FuncionarioDAO())->Insert($this);
+        if ($this->id == null) (new FuncionarioDAO())->Insert($this);
+        
+        else (new FuncionarioDAO())->Update($this);
+    }
+
+    public function GetAllRows()
+    {
+        return $this->rows = (new FuncionarioDAO())->Select();
+    }
+
+    public function SearchById($id)
+    {
+        return (new FuncionarioDAO())->SearchById($id);
+    }
+
+    public function Delete($id)
+    {
+        (new FuncionarioDAO())->Delete($id);
     }
 }

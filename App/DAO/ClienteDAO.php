@@ -51,7 +51,7 @@ class ClienteDAO extends DAO
 
         $stmt->execute();
 
-        return $stmt->fetchAll(DAO::FETCH_CLASS, 'App\Model\ClienteModel');
+        return $stmt->fetchAll(DAO::FETCH_CLASS);
     }
 
     public function SearchById($id) : ClienteModel

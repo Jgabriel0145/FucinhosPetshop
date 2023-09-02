@@ -10,6 +10,8 @@ class FuncionarioController extends Controller
     {
         $model = new FuncionarioModel();
 
+        if (isset($_GET['id'])) $model = $model->SearchById((int) $_GET['id']);
+
         parent::render('Funcionario/FuncionarioCadastro', $model);
     }
 
@@ -17,6 +19,7 @@ class FuncionarioController extends Controller
     {
         $model = new FuncionarioModel();
 
+        $model->id = $_POST['id'];
         $model->nome = $_POST['nome_cadastro'];
         $model->cpf = $_POST['cpf_cadastro'];
         $model->email = $_POST['email_cadastro'];
@@ -34,11 +37,17 @@ class FuncionarioController extends Controller
 
     static public function List()
     {
+        $model = new FuncionarioModel();
 
+        $model->GetAllRows();
+
+        parent::render('Funcionario/FuncionarioListagem', $model);
     }
 
     static public function Delete()
     {
+        (new FuncionarioModel())->Delete((int) $_GET['id']);
 
+        header('Location: /funcionario/listagem');
     }
 }

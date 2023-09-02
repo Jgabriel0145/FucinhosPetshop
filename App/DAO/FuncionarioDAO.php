@@ -41,4 +41,46 @@ class FuncionarioDAO extends DAO
 
         $stmt->execute();
     }
+
+    public function Select()
+    {
+        $sql = 'SELECT * FROM funcionario;';
+
+        $stmt = $this->conexao->prepare($sql);
+
+        $stmt->execute();
+
+        return $stmt->fetchAll(DAO::FETCH_CLASS);
+    }
+
+    public function SearchById($id)
+    {
+        $sql = 'SELECT * FROM funcionario WHERE id = ?';
+
+        $stmt = $this->conexao->prepare($sql);
+
+        $stmt->bindValue(1, $id);
+
+        $stmt->execute();
+
+        $objeto = $stmt->fetchObject('App\Model\FuncionarioModel');
+
+        return is_object($objeto) ? $objeto : new FuncionarioModel();
+    }
+
+    public function SearchByName()
+    {
+
+    }
+
+    public function Delete($id)
+    {
+        $sql = 'DELETE FROM funcionario WHERE id = ?';
+
+        $stmt = $this->conexao->prepare($sql);
+
+        $stmt->bindValue(1, $id);
+
+        $stmt->execute();
+    }
 }
