@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php include "../App/Views/Includes/css_config.php" ?>
-    <title>Clentes Cadastrados</title>
+    <title>Clientes Cadastrados</title>
 </head>
 <body>
 
