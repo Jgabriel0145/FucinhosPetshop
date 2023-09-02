@@ -83,4 +83,22 @@ class FuncionarioDAO extends DAO
 
         $stmt->execute();
     }
+
+
+    //Login
+    public function SearchByEmailAndSenha($email, $senha)
+    {
+        $sql = 'SELECT * FROM funcionario WHERE email = ? AND senha = SHA1(?)';
+
+        $stmt = $this->conexao->prepare($sql);
+
+        $stmt->bindValue(1, $email);
+        $stmt->bindValue(2, $senha);
+
+        $stmt->execute();
+
+        $objeto = $stmt->fetchObject('App\Model\FuncionarioModel');
+
+        return is_object($objeto) ? $objeto : null;
+    }
 }

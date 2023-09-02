@@ -29,4 +29,11 @@ class FuncionarioModel extends Model
     {
         (new FuncionarioDAO())->Delete($id);
     }
+
+
+    //Login
+    public function Autenticar()
+    {
+        return $dados = (new FuncionarioDAO())->SearchByEmailAndSenha($this->email, $this->senha);
+    }
 }

@@ -2,26 +2,27 @@
 
 $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-use App\Controller\{AnimalController, ClienteController, FuncionarioController, ProdutoController, ServicoController, VendaController, LoginController};
+use App\Controller\{AnimalController, ClienteController, FuncionarioController, InicioController, ProdutoController, ServicoController, VendaController, LoginController};
 
 switch ($url)
 {
+    //Início
     case '/inicio':
-        include BASEDIR . "/App/Views/Inicio.php";
+        InicioController::Index();
         break;
 
     
     //Login
-    case '/login':
-        LoginController::Login();
+    case '/funcionario/login':
+        FuncionarioController::Login();
         break;
 
-    case '/login/auth':
-        LoginController::Auth();
+    case '/funcionario/login/auth':
+        FuncionarioController::Auth();
         break;
 
-    case '/login/logout':
-        LoginController::Logout();
+    case '/funcionario/login/logout':
+        FuncionarioController::Logout();
         break;
 
 
@@ -134,6 +135,6 @@ switch ($url)
 
 
     default:
-        header('Location: /login');
+        header('Location: /inicio');
         break;
 }
