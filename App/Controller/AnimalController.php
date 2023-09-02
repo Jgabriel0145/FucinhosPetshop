@@ -8,6 +8,8 @@ class AnimalController extends Controller
 {
     static public function Form()
     {
+        parent::IsAuthenticated();
+
         $model_animal = new AnimalModel();
         $model_cliente = new ClienteModel();
 
@@ -22,6 +24,8 @@ class AnimalController extends Controller
 
     static public function Save() 
     {
+        parent::IsAuthenticated();
+
         $model = new AnimalModel();
 
         $model->id = $_POST['id'];
@@ -38,6 +42,8 @@ class AnimalController extends Controller
 
     static public function List()
     {
+        parent::IsAuthenticated();
+
         $model = new AnimalModel();
 
         $model->GetAllRows();
@@ -47,6 +53,8 @@ class AnimalController extends Controller
 
     static public function Delete()
     {
+        parent::IsAuthenticated();
+        
         (new AnimalModel())->Delete((int) $_GET['id']);
 
         header('Location: /animal/listagem');

@@ -8,6 +8,8 @@ class ClienteController extends Controller
 {
     static public function Form()
     {
+        parent::IsAuthenticated();
+        
         $model = new ClienteModel();
 
         if (isset($_GET['id'])) $model = $model->SearchById((int) $_GET['id']);
@@ -17,6 +19,8 @@ class ClienteController extends Controller
 
     static public function Save() 
     {
+        parent::IsAuthenticated();
+
         $model = new ClienteModel();
 
         $model->id = $_POST['id'];
@@ -33,6 +37,8 @@ class ClienteController extends Controller
 
     static public function List()
     {
+        parent::IsAuthenticated();
+
         $model = new ClienteModel();
 
         $model->GetAllRows();
@@ -42,6 +48,8 @@ class ClienteController extends Controller
 
     static public function Delete()
     {
+        parent::IsAuthenticated();
+
         (new ClienteModel())->Delete((int) $_GET['id']);
 
         header('Location: /cliente/listagem');
