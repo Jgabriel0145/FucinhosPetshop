@@ -7,9 +7,13 @@
 </head>
 <body>
     <form action="/produto/cadastro/save" method="post">
-        <input type="text" name="descricao_produto" placeholder="descricao">
-        <input type="number" name="preco_produto" placeholder="preco">
-        <input type="number" name="estoque_produto" placeholder="estoque">
+        <input type="hidden" name="id" value="<?= $model->id ?>">
+        <input type="text" name="descricao_produto" placeholder="descricao"
+            value="<?= $model->descricao ?>">
+        <input type="number" name="preco_produto" placeholder="preco"
+            value="<?= $model->preco ?>">
+        <input type="number" name="estoque_produto" placeholder="estoque"
+            value="<?= $model->estoque ?>">
 
         <button type="submit">Enviar</button>
     </form>
