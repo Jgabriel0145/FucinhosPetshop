@@ -167,6 +167,14 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
+CREATE  OR REPLACE VIEW `view_servico` AS SELECT s.id, s.descricao as descricao_servico, s.data_servico, s.id_cliente, 
+f.id as funcionario_id, f.nome as funcionario, f.cpf as cpf_funcionario, f.email as email_funcionario, f.senha as senha_funcionario, f.admin as admin_funcionario,
+c.nome as cliente, c.cpf as cpf_cliente, c.telefone as telefone_cliente, c.data_nascimento as data_nascimento_cliente, c.endereco as endereco_cliente
+FROM funcionario_servico_assoc fsa
+JOIN funcionario f ON (fsa.id_funcionario = f.id)
+JOIN servico s ON (fsa.id_servico = s.id)
+JOIN cliente c ON (s.id_cliente = c.id);
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
