@@ -23,6 +23,7 @@ class ProdutoController extends Controller
 
         $model = new ProdutoModel();
 
+        $model->id = $_POST['id'];
         $model->descricao = $_POST['descricao_produto'];
         $model->preco = $_POST['preco_produto'];
         $model->estoque = $_POST['estoque_produto'];
@@ -47,7 +48,7 @@ class ProdutoController extends Controller
     {
         parent::IsAuthenticated();
 
-        (new FuncionarioModel())->Delete((int) $_GET['id']);
+        (new ProdutoModel())->Delete((int) $_GET['id']);
 
         header('Location: /produto/listagem');
     }

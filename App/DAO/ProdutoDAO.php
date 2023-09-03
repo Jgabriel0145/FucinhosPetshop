@@ -29,7 +29,7 @@ class ProdutoDAO extends DAO
 
     public function Update(ProdutoModel $model)
     {
-        $sql = 'UPDATE INTO produto SET descricao = ?, preco = ?, estoque = ? WHERE id = ?';
+        $sql = 'UPDATE produto SET descricao = ?, preco = ?, estoque = ? WHERE id = ?';
 
         $stmt = $this->conexao->prepare($sql);
 
@@ -62,9 +62,9 @@ class ProdutoDAO extends DAO
 
         $stmt->execute();
 
-        $objeto = $stmt->fetchObject(DAO::FETCH_CLASS, 'App\Model\ProdutoModel');
+        $objeto = $stmt->fetchObject('App\Model\ProdutoModel');
 
-        return (is_object($objeto)) ? $objeto : new ProdutoModel();
+        return is_object($objeto) ? $objeto : new ProdutoModel();
     }
 
     public function SearchByName()

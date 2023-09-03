@@ -10,7 +10,7 @@ class ProdutoModel extends Model
 
     public function Save()
     {
-        if (!isset($this->id)) (new ProdutoDAO())->Insert($this);
+        if ($this->id == null) (new ProdutoDAO())->Insert($this);
         else (new ProdutoDAO())->Update($this);
     }
 
