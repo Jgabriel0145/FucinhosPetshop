@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `db_petshop`.`cliente` (
   `endereco` VARCHAR(150) NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 4
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `db_petshop`.`animal` (
     FOREIGN KEY (`id_cliente`)
     REFERENCES `db_petshop`.`cliente` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 6
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `db_petshop`.`funcionario` (
   `admin` TINYINT NULL DEFAULT '0',
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 9
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -179,3 +179,7 @@ JOIN cliente c ON (s.id_cliente = c.id);
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
+
+INSERT INTO funcionario (nome, cpf, email, senha, admin) VALUES ('admin', '11111111111', 'admin@gmail.com', 'admin', 1)
