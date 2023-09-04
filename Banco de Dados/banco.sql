@@ -182,4 +182,4 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 
 
-INSERT INTO funcionario (nome, cpf, email, senha, admin) VALUES ('admin', '11111111111', 'admin@gmail.com', 'admin', 1)
+INSERT INTO funcionario (nome, cpf, email, senha, admin) VALUES ('admin', '11111111111', 'admin@gmail.com', SHA1('admin'), 1);
