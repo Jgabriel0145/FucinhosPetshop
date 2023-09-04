@@ -93,6 +93,23 @@
             width: 100%;
         }
 
+        .login{
+            justify-content: center;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            line-height: 10px;
+        }
+
+        #img_fucinhos_login{
+            margin-top: 13%;
+            width: 20%;
+        }
+
+        #form_login{
+            margin-top: 1%;
+        }
+        
 
 
     </style>
