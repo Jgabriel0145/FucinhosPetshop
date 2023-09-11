@@ -1,42 +1,42 @@
- 
-<nav class="menu-lateral">
-    <div class="btn-expandir">
-      <i class="bi bi-list" id="expandir"></i>
+   <div class="sidebar close">
+        <div class="logo-details">
+            <i class="bi bi-cassette-fill"></i>
+        </div>
+        <ul class="nav-links">
+            <li>
+                <div class="iocn-link">
+                <a href="#">
+                    <i class="bi bi-person-plus-fill"></i>
+                </a>
+                </div>
+                <ul class="sub-menu">
+                    <li><a class="link_name" href="#">Adicionar</a></li>
+                    <li><a href="#">Cliente</a></li>
+                    <li><a href="#">Animal</a></li>
+                    <li><a href="#">Serviço</a></li>
+                    <li><a href="#">Produto</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="bi bi-box2-fill"></i>
+                </a>
+                <ul class="sub-menu">
+                    <li><a class="link_name blank" href="#">Estoque</a></li>
+                </ul>
+            </li>
+            <li>
+                <div class="iocn-link">
+                <a href="#">
+                    <i class="bi bi-calendar-event-fill"></i>
+                </a>
+                </div>
+                <ul class="sub-menu">
+                    <li><a class="link_name" href="#">Horários</a></li>
+                    <li><a href="#">Ver horários</a></li>
+                    <li><a href="#">Marcar horário</a></li>
+                </ul>
+            </li>
+        </ul>
     </div>
-      <ul class="menu-principal">
-        <li class="item-menu" id="inicio">
-          <a href="/">
-            <span class="icon"><i class="bi bi-house"></i></span>
-            <span class="txt-link">Inicio</span>
-          </a>
-        </li>
-        <li class="item-menu" id="cadastros">
-          <a href="#">
-            <span class="icon"><i class="bi bi-person-plus"></i></span>
-            <span class="txt-link">Adicionar</span>
-          </a>
-          <!-- <span class="dropdown"><i class="bi bi-caret-down-fill"></i></span> -->
-        </li>
-        <li class="item-menu">
-          <a href="#">
-            <span class="icon">
-              <i class="bi bi-calendar2-plus"></i>
-            </span>
-            <span class="txt-link">Horários</span>
-          </a>
-          <!-- <span class="dropdown"><i class="bi bi-caret-down-fill"></i></span> -->
-        </li>
-        <li class="item-menu">
-          <a href="#">
-            <span class="icon">
-              <i class="bi bi-box2"></i>
-            </span>
-            <span class="txt-link">Estoque</span>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </nav><!-- menu lateral -->
 
-
-    <!-- FIM DA SIDEBAR -->
