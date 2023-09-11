@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php include "../App/Views/Includes/css_config.php" ?>
+    <?php include "../App/Views/Includes/CssConfig.php" ?>
     <title>Document</title>
 
     <?php 
@@ -23,6 +23,7 @@
 
     <?php include "../App/Views/Includes/Navbar/navbar.php" ?> 
     
+    <div class="conteudo">
 
     <form class="row g-3" method="post" action="/animal/cadastro/save" id="form-animal">
         <input type="hidden" name="id" value="<?= $model_animal->id ?>">
@@ -83,6 +84,7 @@
         <button class="btn btn-primary" id="btn-enviar" type="submit">Enviar</button>
       </div>
     </form>
+    </div>
     <?php include "../App/Views/Includes/JsConfig.php"?>
 </body>
 </html>

@@ -4,8 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <?php include "../App/Views/Includes/CssConfig.php" ?>
+
 </head>
 <body>
+      
+  <?php include "../App/Views/Includes/Navbar/navbar.php" ?>
+  <div class="conteudo">
     <table>
         <thead>
             <th>Excluir</th>
@@ -76,5 +81,6 @@
             <?php endif ?>
         </tbody>
     </table>
+    </div>
 </body>
 </html>

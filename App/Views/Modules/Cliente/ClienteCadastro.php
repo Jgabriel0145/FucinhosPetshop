@@ -8,10 +8,10 @@
 </head>
 <body>
 
- 
+ <div class="conteudo">
     <?php include "../App/Views/Includes/Navbar/navbar.php" ?> 
 
-    <form class="form" method="post" action="/cliente/cadastro/save">
+    <form class="form-cliente" method="post" action="/cliente/cadastro/save">
         <input type="hidden" name="id" value="<?= $model->id ?>">
 
         <label for="nome_cliente" class="form-label">Nome</label>
@@ -37,6 +37,10 @@
         <br/>
         <button class="btn btn-primary" id="btn-enviar" type="submit">Enviar</button>
     </form>
+
+    </div>
+    
+    <?php include "../App/Views/Includes/Btn-Venda/Btn-venda.php" ?> 
 
     
     <?php include "../App/Views/Includes/JsConfig.php"?>

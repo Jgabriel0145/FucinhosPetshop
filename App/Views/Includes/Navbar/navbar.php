@@ -1,4 +1,5 @@
-   <div class="sidebar close">
+  
+  <div class="sidebar close">
         <div class="logo-details">
             <i class="bi bi-cassette-fill"></i>
         </div>
@@ -11,10 +12,10 @@
                 </div>
                 <ul class="sub-menu">
                     <li><a class="link_name" href="#">Adicionar</a></li>
-                    <li><a href="#">Cliente</a></li>
-                    <li><a href="#">Animal</a></li>
-                    <li><a href="#">Serviço</a></li>
-                    <li><a href="#">Produto</a></li>
+                    <li><a href="/cliente/cadastro">Cliente</a></li>
+                    <li><a href="/animal/cadastro">Animal</a></li>
+                    <li><a href="/servico/cadastro">Serviço</a></li>
+                    <li><a href="/produto/cadastro">Produto</a></li>
                 </ul>
             </li>
             <li>
