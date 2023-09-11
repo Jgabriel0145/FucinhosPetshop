@@ -11,6 +11,11 @@
             box-sizing: border-box;
         }
 
+        body{
+            width: 100%;
+            height: 100%;
+        }
+
         .sidebar{
             position: fixed;
             top: 0;
@@ -40,6 +45,7 @@
         .sidebar .nav-links{
             height: 100%;
             padding-top: 30px;
+            padding-left: 0;
         }
 
         .sidebar .nav-links li{
@@ -142,9 +148,9 @@
             text-decoration: none;
         }
 
-        .form{
-            width: 700px;
-            height: 40vh;
+        form{
+            width: 100%;
+            height: 100%;
             line-height:18px;
             justify-content: center;
             align-items: center;
@@ -152,6 +158,27 @@
             font-size:20px;
             
         }
+
+        .form-cliente{
+            width: 700px;
+            height: 40vh;
+            line-height:18px;
+            justify-content: center;
+            align-items: center;
+            margin: 20vh auto;
+            font-size:20px;            
+        }
+
+        #form-animal{
+            width: 1000px;
+            height: 40vh;
+            line-height:18px;
+            justify-content: center;
+            align-items: center;
+            margin: 20vh auto;
+            font-size:20px;            
+        }
+
         #btn-enviar{
             background-color: #1aae9f;
             border-color: #1aae9f;
@@ -174,8 +201,39 @@
         #form_login{
             margin-top: 1%;
         }
-        
 
+        .conteudo{
+            margin-left: 60px;
+        }
+        
+        #btn-venda{
+            position: relative;
+            right: 0;
+            bottom: 0;
+            width: 80px;
+            height: 80px;
+            border-radius: 15px;
+            background: #1aae9f;
+            margin-left: 95%;
+            border-width: 0;
+            margin-top: 100px;
+            transition: width 0.7s;
+        }
+
+        #btn-venda:hover{
+            width: 150px;
+        }
+
+        #btn-venda svg{
+            scale: 180%;
+            margin-bottom: 7px;
+        }
+
+        .btn-venda i p{
+            font-size: 20px;
+            color: #d1efec;
+            visibility: hidden;
+        }
 
     </style>
 </head>
