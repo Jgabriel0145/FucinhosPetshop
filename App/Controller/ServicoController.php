@@ -3,14 +3,22 @@
 namespace App\Controller;
 
 use App\Model\ServicoModel;
+use App\Model\ClienteModel;
 
 class ServicoController extends Controller
 {
     static public function Form()
     {
         parent::IsAuthenticated();
+
+        $model_cliente = new ClienteModel();
+        $model_cliente->GetAllRows();
+
+        $model_servico = new ServicoModel();
+
+        $models = [$model_servico, $model_cliente];
         
-        parent::render('Servico/ServicoCadastro');
+        parent::render('Servico/ServicoCadastro', $models);
     }
 
     static public function Save() 

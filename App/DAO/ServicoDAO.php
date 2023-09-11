@@ -24,7 +24,13 @@ class ServicoDAO extends DAO
 
     public function Select()
     {
-        
+        $sql = 'SELECT * FROM view_servico;';
+
+        $stmt = $this->conexao->prepare($sql);
+
+        $stmt->execute();
+
+        return $stmt->fetchAll(DAO::FETCH_CLASS);
     }
 
     public function SearchById($id)
