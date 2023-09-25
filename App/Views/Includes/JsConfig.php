@@ -25,4 +25,6 @@ var menuLateral = document.querySelector('.menu-lateral')
     btnExp.addEventListener('click', function(){
         menuLateral.classList.toggle('expandir')
 })
+
+
 </script>
