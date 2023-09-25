@@ -41,7 +41,10 @@ class ServicoController extends Controller
     {
         parent::IsAuthenticated();
 
-        parent::render('Servico/ServicoListagem');
+        $model = new ServicoModel();
+        $model->GetAllRows();
+
+        parent::render('Servico/ServicoListagem', $model);
     }
 
     static public function Delete()
