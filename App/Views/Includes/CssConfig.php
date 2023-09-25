@@ -9,6 +9,7 @@
             margin:0;
             padding: 0;
             box-sizing: border-box;
+            
         }
 
         body{
@@ -154,18 +155,14 @@
             line-height:18px;
             justify-content: center;
             align-items: center;
-            margin: 20vh auto;
             font-size:20px;
             
         }
 
         .form-cliente{
-            width: 700px;
-            height: 40vh;
+            /*width: 700px;
+            height: 40vh;*/
             line-height:18px;
-            justify-content: center;
-            align-items: center;
-            margin: 20vh auto;
             font-size:20px;            
         }
 
@@ -233,6 +230,11 @@
             font-size: 20px;
             color: #d1efec;
             visibility: hidden;
+        }
+
+        .modal{
+            padding: 0;
+            margin:0;
         }
 
     </style>

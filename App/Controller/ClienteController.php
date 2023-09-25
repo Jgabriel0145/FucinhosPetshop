@@ -6,13 +6,17 @@ use App\Model\ClienteModel;
 
 class ClienteController extends Controller
 {
-    static public function Form()
+    static public function FormAndList()
     {
         parent::IsAuthenticated();
         
         $model = new ClienteModel();
 
         if (isset($_GET['id'])) $model = $model->SearchById((int) $_GET['id']);
+
+        $model = new ClienteModel();
+
+        $model->GetAllRows();
 
         parent::render('Cliente/ClienteCadastro', $model);
     }
@@ -32,7 +36,7 @@ class ClienteController extends Controller
 
         $model->Save();
 
-        header('Location: /cliente/listagem');
+        header('Location: /cliente/cadastro');
     }
 
     static public function List()
@@ -43,7 +47,7 @@ class ClienteController extends Controller
 
         $model->GetAllRows();
 
-        parent::render('Cliente/ClienteListagem', $model);
+        parent::render('Cliente/ClienteCadastro', $model);
     }
 
     static public function Delete()

@@ -46,15 +46,11 @@ switch ($url)
 
     //Cliente
     case '/cliente/cadastro':
-        ClienteController::Form();
+        ClienteController::FormAndList();
         break;
 
     case '/cliente/cadastro/save':
         ClienteController::Save();
-        break;
-
-    case '/cliente/listagem':
-        ClienteController::List();
         break;
 
     case '/cliente/excluir':
