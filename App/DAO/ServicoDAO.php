@@ -14,7 +14,15 @@ class ServicoDAO extends DAO
 
     public function Insert(ServicoModel $model)
     {
+        $sql = 'INSERT INTO servico (data_servico, descricao, id_cliente) VALUES (?, ?, ?);';
 
+        $stmt = $this->conexao->prepare($sql);
+        
+        $stmt->bindValue(1, $model->data_servico);
+        $stmt->bindValue(2, $model->descricao);
+        $stmt->bindValue(3, $model->id_cliente);
+
+        $stmt->execute();
     }
 
     public function Update(ServicoModel $model)
