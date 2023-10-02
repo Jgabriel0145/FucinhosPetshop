@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php include "../App/Views/Includes/CssConfig.php" ?>
     <?php 
-        $model_cliente = $model[1];
         $model_servico = $model[0];
+        $model_cliente = $model[1];
+        $model_funcionario = $model[2];
     ?>
 </head>
 <body>
@@ -16,8 +17,14 @@
         <input type="date" name="data_servico">
         <select name="id_cliente_servico">
             <?php foreach ($model_cliente->rows as $cliente): ?>
-                <option value="<?= $cliente->id?>"><?= $cliente->nome ?></option>
-            <?php endforeach;?>
+                <option value="<?= $cliente->id ?>"><?= $cliente->nome ?></option>
+            <?php endforeach; ?>
+        </select>
+
+        <select name="id_funcionario_servico">
+            <?php foreach ($model_funcionario->rows as $funcionario): ?>
+                <option value="<?= $funcionario->id ?>"><?= $funcionario->nome ?></option>
+            <?php endforeach; ?>
         </select>
 
         <button type="submit">Enviar</button>

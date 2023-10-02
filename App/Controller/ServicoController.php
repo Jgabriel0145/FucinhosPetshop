@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Model\ServicoModel;
 use App\Model\ClienteModel;
+use App\Model\FuncionarioModel;
 
 class ServicoController extends Controller
 {
@@ -14,9 +15,12 @@ class ServicoController extends Controller
         $model_cliente = new ClienteModel();
         $model_cliente->GetAllRows();
 
+        $model_funcionario = new FuncionarioModel();
+        $model_funcionario->GetAllRows();
+
         $model_servico = new ServicoModel();
 
-        $models = [$model_servico, $model_cliente];
+        $models = [$model_servico, $model_cliente, $model_funcionario];
         
         parent::render('Servico/ServicoCadastro', $models);
     }
@@ -31,6 +35,7 @@ class ServicoController extends Controller
         $model->descricao = $_POST['descricao_servico'];
         $model->data_servico = $_POST['data_servico'];
         $model->id_cliente = $_POST['id_cliente_servico'];
+        $model->id_funcionario = $_POST['id_funcionario_servico'];
 
         $model->Save();
 

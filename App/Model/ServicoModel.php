@@ -6,7 +6,7 @@ use App\DAO\ServicoDAO;
 
 class ServicoModel extends Model
 {
-    public $id, $descricao, $data_servico, $id_cliente;
+    public $id, $descricao, $data_servico, $id_cliente, $id_funcionario;
 
     public function Save()
     {
