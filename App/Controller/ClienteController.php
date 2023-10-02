@@ -56,6 +56,6 @@ class ClienteController extends Controller
 
         (new ClienteModel())->Delete((int) $_GET['id']);
 
-        header('Location: /cliente/listagem');
+        header('Location: /cliente/cadastro');
     }
 }

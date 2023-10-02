@@ -17,6 +17,7 @@
             height: 100%;
         }
 
+
         .sidebar{
             position: fixed;
             top: 0;
@@ -235,6 +236,11 @@
         .modal{
             padding: 0;
             margin:0;
+        }
+
+        .tudo{
+            display: flex;
+            flex-direction: column;
         }
 
     </style>

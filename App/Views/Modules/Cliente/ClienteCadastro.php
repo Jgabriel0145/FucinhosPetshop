@@ -29,7 +29,7 @@
 
 
 
-<section class="box-table">
+<section class="box-table" id="list-cliente">
 <table class="table">
   <thead>
     <tr>
@@ -46,12 +46,9 @@
     
 
   
-  
+    <div class="tudo"> 
+    <div class="emcima">
  
-  
-
-
-
         <tbody>
             <?php foreach($model->rows as $item): ?>
 
@@ -94,15 +91,19 @@
                     </td>
                 </tr>
             <?php endif ?>
+
         </tbody>
-        </table> 
+        </table>
+        </div>
+        <div class="embaixo">
+        <button type="button" id="btn-cliente" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Adicionar cliente</button>
+        </div>
+        </div>
 </section>
 
 
     <!-- MODAL !-->
-
-        <button type="button" id="btn-cliente" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Adicionar cliente</button>
-
+        
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
