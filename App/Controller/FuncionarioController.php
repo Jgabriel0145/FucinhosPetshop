@@ -78,7 +78,17 @@ class FuncionarioController extends Controller
 
         if ($usuario != null)
         {
-            $_SESSION['usuario'] = $usuario;
+            $array_dados = [ 
+                'id' => $usuario->id,
+                'nome' => $usuario->nome,
+                'cpf' => $usuario->cpf,
+                'email' => $usuario->email,
+                'senha' => $usuario->senha,
+                'admin' => $usuario->admin
+            ];
+
+            $_SESSION['dados_usuario'] = $array_dados;
+
             header('Location: /inicio');
         }
         else header('Location: /funcionario/login?erro=true');
