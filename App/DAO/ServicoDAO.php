@@ -28,12 +28,12 @@ class ServicoDAO extends DAO
 
         $sql2 = 'INSERT INTO funcionario_servico_assoc (id_funcionario, id_servico) VALUES (?, ?);';
         
-        $stmt2 = $this->conexao->prepare($sql);
+        $stmt2 = $this->conexao->prepare($sql2);
 
         $stmt2->bindValue(1, $model->id_funcionario);
         $stmt2->bindValue(2, $id_servico);
 
-        $stmt->execute();
+        $stmt2->execute();
     }
 
     public function Update(ServicoModel $model)
