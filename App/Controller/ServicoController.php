@@ -20,6 +20,8 @@ class ServicoController extends Controller
 
         $model_servico = new ServicoModel();
 
+        if (isset($_GET['id'])) $model_servico = $model_servico->SearchById((int) $_GET['id']);
+
         $models = [$model_servico, $model_cliente, $model_funcionario];
         
         parent::render('Servico/ServicoCadastro', $models);

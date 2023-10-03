@@ -13,8 +13,10 @@
 <body>
     <form action="/servico/cadastro/save" method="post">
         <input type="hidden" name="id" value="<?= $model_servico->id ?>">
-        <input type="text" name="descricao_servico" placeholder="descrição">
-        <input type="date" name="data_servico">
+        <input type="text" name="descricao_servico" placeholder="descrição"
+            value="<?= $model_servico->descricao_servico ?>">
+        <input type="date" name="data_servico"
+            value="<?= $model_servico->data_servico ?>">
         <select name="id_cliente_servico">
             <?php foreach ($model_cliente->rows as $cliente): ?>
                 <option value="<?= $cliente->id ?>"><?= $cliente->nome ?></option>
