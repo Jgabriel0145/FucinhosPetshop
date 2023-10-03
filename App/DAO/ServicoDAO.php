@@ -38,15 +38,21 @@ class ServicoDAO extends DAO
 
     public function Update(ServicoModel $model)
     {
+        /*$sql = 'UPDATE servico SET data_servico = ?, descricao = ?, id_cliente = ? WHERE id = ?';
 
+        $stmt = $this->conexao->prepare($sql);
+
+        $stmt->bindValue(1, $model->data_servico);
+        $stmt->bindValue(2, $model->descricao);
+        $stmt->bindValue(3, $model->id_cliente);
+        $stmt->bindValue(4, $model->id);
+
+        $stmt->execute();*/
     }
 
     public function Select()
     {
-        /*$sql = 'SELECT s.*, c.id AS cliente_id, c.nome AS cliente, c.cpf, c.telefone, c.data_nascimento, c.endereco FROM servico s
-        JOIN cliente c ON (s.id = c.id);';*/
-
-        $sql = 'SELECT * FROM db_petshop.view_servico;';
+        $sql = 'SELECT * FROM view_servico;';
 
         $stmt = $this->conexao->prepare($sql);
 
@@ -57,7 +63,17 @@ class ServicoDAO extends DAO
 
     public function SearchById($id)
     {
+        $sql = 'SELECT * FROM view_servico WHERE id_servico = ?';
 
+        $stmt = $this->conexao->prepare($sql);
+
+        $stmt->bindValue(1, $id);
+
+        $stmt->execute();
+
+        $objeto = $stmt->fetchObject('App\Model\ServicoModel');
+
+        return is_object($objeto) ? $objeto : new ServicoModel();
     }
 
     public function Delete($id)
