@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `db_petshop`.`cliente` (
   `endereco` VARCHAR(150) NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 1
+AUTO_INCREMENT = 0
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `db_petshop`.`animal` (
     FOREIGN KEY (`id_cliente`)
     REFERENCES `db_petshop`.`cliente` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 1
+AUTO_INCREMENT = 0
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `db_petshop`.`funcionario` (
   `admin` TINYINT NULL DEFAULT '0',
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 1
+AUTO_INCREMENT = 0
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -80,12 +80,20 @@ CREATE TABLE IF NOT EXISTS `db_petshop`.`servico` (
   `data_servico` DATETIME NOT NULL,
   `descricao` VARCHAR(50) NOT NULL,
   `id_cliente` INT NULL DEFAULT NULL,
+  `id_funcionario` INT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_servico_cliente_idx` (`id_cliente` ASC) VISIBLE,
+  INDEX `fk_servico_funcionario_idx` (`id_funcionario` ASC) VISIBLE,
   CONSTRAINT `fk_servico_cliente`
     FOREIGN KEY (`id_cliente`)
-    REFERENCES `db_petshop`.`cliente` (`id`))
+    REFERENCES `db_petshop`.`cliente` (`id`),
+  CONSTRAINT `fk_servico_funcionario`
+    FOREIGN KEY (`id_funcionario`)
+    REFERENCES `db_petshop`.`funcionario` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB
+AUTO_INCREMENT = 0
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -107,6 +115,7 @@ CREATE TABLE IF NOT EXISTS `db_petshop`.`funcionario_servico_assoc` (
     FOREIGN KEY (`id_servico`)
     REFERENCES `db_petshop`.`servico` (`id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 0
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -121,6 +130,7 @@ CREATE TABLE IF NOT EXISTS `db_petshop`.`produto` (
   `estoque` INT NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 0
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -147,6 +157,7 @@ CREATE TABLE IF NOT EXISTS `db_petshop`.`venda_produto_servico_assoc` (
     FOREIGN KEY (`id_servico`)
     REFERENCES `db_petshop`.`servico` (`id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 0
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -164,6 +175,7 @@ CREATE TABLE IF NOT EXISTS `db_petshop`.`venda` (
     FOREIGN KEY (`id_produto_servico`)
     REFERENCES `db_petshop`.`venda_produto_servico_assoc` (`id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 0
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -175,11 +187,8 @@ JOIN funcionario f ON (fsa.id_funcionario = f.id)
 JOIN servico s ON (fsa.id_servico = s.id)
 JOIN cliente c ON (s.id_cliente = c.id);
 
-
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
-
-
 
 INSERT INTO funcionario (nome, cpf, email, senha, admin) VALUES ('admin', '11111111111', 'admin@gmail.com', SHA1('admin'), 1);
