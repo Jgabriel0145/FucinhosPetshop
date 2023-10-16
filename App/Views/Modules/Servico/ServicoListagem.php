@@ -27,25 +27,25 @@
 
                 <tr>
                     <td>
-                        <a href="/servico/excluir?id=<?= $item->id_servico ?>">X</a>
+                        <a href="/servico/excluir?id=<?= $item->id ?>">X</a>
                     </td>
 
-                    <td><a><?= $item->id_servico ?></a></td>
+                    <td><a><?= $item->id ?></a></td>
 
                     <td>
-                        <a href="/servico/cadastro?id=<?= $item->id_servico ?>"><?= $item->descricao_servico ?></a>
-                    </td>
-
-                    <td>
-                        <a href="/servico/cadastro?id=<?= $item->id_servico ?>"><?= $item->data_servico ?></a>
+                        <a href="/servico/cadastro?id=<?= $item->id ?>"><?= $item->descricao ?></a>
                     </td>
 
                     <td>
-                        <a href="/servico/cadastro?id=<?= $item->id_servico ?>"><?= $item->cliente ?></a>
+                        <a href="/servico/cadastro?id=<?= $item->id ?>"><?= $item->data_servico ?></a>
                     </td>
 
                     <td>
-                        <a href="/servico/cadastro?id=<?= $item->id_servico ?>"><?= $item->funcionario ?></a>
+                        <a href="/servico/cadastro?id=<?= $item->id ?>"><?= $item->cliente ?></a>
+                    </td>
+
+                    <td>
+                        <a href="/servico/cadastro?id=<?= $item->id ?>"><?= $item->funcionario ?></a>
                     </td>
 
                 </tr>
