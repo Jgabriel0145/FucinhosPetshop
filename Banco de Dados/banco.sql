@@ -73,54 +73,6 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `db_petshop`.`servico`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `db_petshop`.`servico` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `data_servico` DATETIME NOT NULL,
-  `descricao` VARCHAR(50) NOT NULL,
-  `id_cliente` INT NULL DEFAULT NULL,
-  `id_funcionario` INT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_servico_cliente_idx` (`id_cliente` ASC) VISIBLE,
-  INDEX `fk_servico_funcionario_idx` (`id_funcionario` ASC) VISIBLE,
-  CONSTRAINT `fk_servico_cliente`
-    FOREIGN KEY (`id_cliente`)
-    REFERENCES `db_petshop`.`cliente` (`id`),
-  CONSTRAINT `fk_servico_funcionario`
-    FOREIGN KEY (`id_funcionario`)
-    REFERENCES `db_petshop`.`funcionario` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-AUTO_INCREMENT = 0
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
--- Table `db_petshop`.`funcionario_servico_assoc`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `db_petshop`.`funcionario_servico_assoc` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `id_funcionario` INT NULL DEFAULT NULL,
-  `id_servico` INT NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_assoc_func_idx` (`id_funcionario` ASC) VISIBLE,
-  INDEX `fk_assoc_func_serv_idx` (`id_servico` ASC) VISIBLE,
-  CONSTRAINT `fk_assoc_func`
-    FOREIGN KEY (`id_funcionario`)
-    REFERENCES `db_petshop`.`funcionario` (`id`),
-  CONSTRAINT `fk_assoc_func_serv`
-    FOREIGN KEY (`id_servico`)
-    REFERENCES `db_petshop`.`servico` (`id`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 0
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
 -- Table `db_petshop`.`produto`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `db_petshop`.`produto` (
@@ -136,30 +88,68 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `db_petshop`.`venda_produto_servico_assoc`
+-- Table `db_petshop`.`servico`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `db_petshop`.`venda_produto_servico_assoc` (
+CREATE TABLE IF NOT EXISTS `db_petshop`.`servico` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `id_produto` INT NULL DEFAULT NULL,
-  `id_servico` INT NULL DEFAULT NULL,
+  `data_servico` DATETIME NOT NULL,
+  `descricao` VARCHAR(50) NOT NULL,
   `id_cliente` INT NULL DEFAULT NULL,
+  `id_funcionario` INT NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_produto_venda_assoc_idx` (`id_produto` ASC) VISIBLE,
-  INDEX `fk_cliente_venda_assoc_idx` (`id_cliente` ASC) VISIBLE,
-  INDEX `fk_servico_venda_assoc_idx` (`id_servico` ASC) VISIBLE,
-  CONSTRAINT `fk_cliente_venda_assoc`
+  INDEX `fk_servico_cliente_idx` (`id_cliente` ASC) VISIBLE,
+  INDEX `fk_servico_funcionario_idx` (`id_funcionario` ASC) VISIBLE,
+  CONSTRAINT `fk_servico_cliente`
     FOREIGN KEY (`id_cliente`)
     REFERENCES `db_petshop`.`cliente` (`id`),
-  CONSTRAINT `fk_produto_venda_assoc`
-    FOREIGN KEY (`id_produto`)
-    REFERENCES `db_petshop`.`produto` (`id`),
-  CONSTRAINT `fk_servico_venda_assoc`
-    FOREIGN KEY (`id_servico`)
-    REFERENCES `db_petshop`.`servico` (`id`))
+  CONSTRAINT `fk_servico_funcionario`
+    FOREIGN KEY (`id_funcionario`)
+    REFERENCES `db_petshop`.`funcionario` (`id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 0
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `db_petshop`.`carrinho_temporario`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `db_petshop`.`carrinho_temporario` (
+  `id` INT NOT NULL,
+  `id_servico` INT NULL,
+  `id_produto` INT NULL,
+  `quantidade` INT NULL,
+  `valor_un` DOUBLE NULL,
+  `valor_total` DOUBLE NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 0;
+
+
+-- -----------------------------------------------------
+-- Table `db_petshop`.`venda_itens`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `db_petshop`.`venda_itens` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `id_produto` INT NULL,
+  `id_servico` INT NULL,
+  `quantidade` INT NULL,
+  `total_venda` DOUBLE NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_venda_itens_produto_idx` (`id_produto` ASC) VISIBLE,
+  INDEX `fk_venda_itens_servico_idx` (`id_servico` ASC) VISIBLE,
+  CONSTRAINT `fk_venda_itens_produto`
+    FOREIGN KEY (`id_produto`)
+    REFERENCES `db_petshop`.`produto` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_venda_itens_servico`
+    FOREIGN KEY (`id_servico`)
+    REFERENCES `db_petshop`.`servico` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+AUTO_INCREMENT = 0;
 
 
 -- -----------------------------------------------------
@@ -167,28 +157,42 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `db_petshop`.`venda` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `data_venda` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `id_produto_servico` INT NOT NULL,
+  `data_venda` DATETIME NULL DEFAULT CURRENT_TIMESTAMP(),
+  `id_venda_itens` INT NULL,
+  `id_cliente` INT NULL,
+  `id_funcionario` INT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_venda_produto_servico_idx` (`id_produto_servico` ASC) VISIBLE,
-  CONSTRAINT `fk_venda_produto_servico`
-    FOREIGN KEY (`id_produto_servico`)
-    REFERENCES `db_petshop`.`venda_produto_servico_assoc` (`id`))
+  INDEX `fk_venda_cliente_idx` (`id_cliente` ASC) VISIBLE,
+  INDEX `fk_venda_funcionario_idx` (`id_funcionario` ASC) VISIBLE,
+  CONSTRAINT `fk_venda_venda_itens`
+    FOREIGN KEY (`id`)
+    REFERENCES `db_petshop`.`venda_itens` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_venda_cliente`
+    FOREIGN KEY (`id_cliente`)
+    REFERENCES `db_petshop`.`cliente` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_venda_funcionario`
+    FOREIGN KEY (`id_funcionario`)
+    REFERENCES `db_petshop`.`funcionario` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 0
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+AUTO_INCREMENT = 0;
 
-CREATE OR REPLACE VIEW `view_servico` AS SELECT s.id as id_servico, s.descricao as descricao_servico, s.data_servico, s.id_cliente, 
+/*CREATE OR REPLACE VIEW `view_servico` AS SELECT s.id as id_servico, s.descricao as descricao_servico, s.data_servico, s.id_cliente, 
 f.id as funcionario_id, f.nome as funcionario, f.cpf as cpf_funcionario, f.email as email_funcionario, f.senha as senha_funcionario, f.admin as admin_funcionario,
 c.nome as cliente, c.cpf as cpf_cliente, c.telefone as telefone_cliente, c.data_nascimento as data_nascimento_cliente, c.endereco as endereco_cliente
 FROM funcionario_servico_assoc fsa
 JOIN funcionario f ON (fsa.id_funcionario = f.id)
 JOIN servico s ON (fsa.id_servico = s.id)
-JOIN cliente c ON (s.id_cliente = c.id);
+JOIN cliente c ON (s.id_cliente = c.id);*/
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
 
 INSERT INTO funcionario (nome, cpf, email, senha, admin) VALUES ('admin', '11111111111', 'admin@gmail.com', SHA1('admin'), 1);

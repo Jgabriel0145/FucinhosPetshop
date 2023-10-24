@@ -13,7 +13,6 @@ class ProdutoDAO extends DAO
         parent::__construct();
     }
 
-
     public function Insert(ProdutoModel $model)
     {
         $sql = 'INSERT INTO produto (descricao, preco, estoque) VALUES (?, ?, ?)';

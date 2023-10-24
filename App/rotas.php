@@ -117,7 +117,10 @@ switch ($url)
         VendaController::Form();
         break;
 
-    case '/venda/cadastro/save':
+    case '/venda/cadastro/carrinho':
+        break;
+
+    case '/venda/cadastro/carrinho/save':
         VendaController::Save();
         break;
 
