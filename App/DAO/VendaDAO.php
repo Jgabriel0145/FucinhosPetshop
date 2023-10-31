@@ -74,9 +74,21 @@ class VendaDAO extends DAO
         $stmt->execute();
     }
 
-    public function SaveCarrinho(VendaModel $model)
+    public function AddCarrinho(VendaModel $model)
     {
+        $sql = 'INSERT INTO carrinho_temporario (id_servico, quantidade_servico, valor_un_servico, id_produto, quantidade_produto, valor_un_produto, valor_total) VALUES (?, ?, ?, ?, ?, ?, ?);';
+    
+        $stmt = $this->conexao->prepare($sql);
 
+        $stmt->bindValue(1, $model->id_servico_carrinho);
+        $stmt->bindValue(2, $model->quantidade_servico_carrinho);
+        $stmt->bindValue(3, $model->valor_un_servico_carrinho);
+        $stmt->bindValue(4, $model->id_produto_carrinho);
+        $stmt->bindValue(5, $model->quantidade_produto_carrinho);
+        $stmt->bindValue(6, $model->valor_un_produto_carrinho);
+        $stmt->bindValue(7, $model->valor_total_carrinho);
+
+        $stmt->execute();
     }
 
     public function SelectCarrinho()
