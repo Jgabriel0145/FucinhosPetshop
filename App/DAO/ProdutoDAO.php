@@ -62,7 +62,7 @@ class ProdutoDAO extends DAO
         $stmt->execute();
 
         $objeto = $stmt->fetchObject('App\Model\ProdutoModel');
-
+        
         return is_object($objeto) ? $objeto : new ProdutoModel();
     }
 

@@ -57,11 +57,13 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `db_petshop`.`carrinho_temporario`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `db_petshop`.`carrinho_temporario` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `id_servico` INT NULL DEFAULT NULL,
+  `quantidade_servico` INT NULL DEFAULT NULL,
+  `valor_un_servico` DOUBLE NULL DEFAULT NULL,
   `id_produto` INT NULL DEFAULT NULL,
-  `quantidade` INT NULL DEFAULT NULL,
-  `valor_un` DOUBLE NULL DEFAULT NULL,
+  `quantidade_produto` INT NULL DEFAULT NULL,
+  `valor_un_produto` DOUBLE NULL DEFAULT NULL,
   `valor_total` DOUBLE NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
@@ -118,8 +120,9 @@ COLLATE = utf8mb4_0900_ai_ci;
 CREATE TABLE IF NOT EXISTS `db_petshop`.`venda_itens` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_produto` INT NULL DEFAULT NULL,
+  `quantidade_produto` INT NULL DEFAULT NULL,
   `id_servico` INT NULL DEFAULT NULL,
-  `quantidade` INT NULL DEFAULT NULL,
+  `quantidade_servico` INT NULL DEFAULT NULL,
   `total_venda` DOUBLE NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_venda_itens_produto_idx` (`id_produto` ASC) VISIBLE,
@@ -166,6 +169,8 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 
+
+
 /*CREATE OR REPLACE VIEW `view_servico` AS SELECT s.id as id_servico, s.descricao as descricao_servico, s.data_servico, s.id_cliente, 
 f.id as funcionario_id, f.nome as funcionario, f.cpf as cpf_funcionario, f.email as email_funcionario, f.senha as senha_funcionario, f.admin as admin_funcionario,
 c.nome as cliente, c.cpf as cpf_cliente, c.telefone as telefone_cliente, c.data_nascimento as data_nascimento_cliente, c.endereco as endereco_cliente
@@ -173,6 +178,5 @@ FROM funcionario_servico_assoc fsa
 JOIN funcionario f ON (fsa.id_funcionario = f.id)
 JOIN servico s ON (fsa.id_servico = s.id)
 JOIN cliente c ON (s.id_cliente = c.id);*/
-
 
 INSERT INTO funcionario (nome, cpf, email, senha, admin) VALUES ('admin', '11111111111', 'admin@gmail.com', SHA1('admin'), 1);
