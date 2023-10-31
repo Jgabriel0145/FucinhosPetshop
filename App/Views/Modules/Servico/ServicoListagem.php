@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listagem de Serviços</title>
     <?php //include "../App/Views/Includes/CssConfig.php" ?>
 
 </head>
@@ -17,9 +18,7 @@
             <th>Excluir</th>
             <th>Id</th>
             <th>Descrição</th>
-            <th>Data</th>
-            <th>Cliente</th>
-            <th>Funcionario</th>
+            <th>Valor do Serviço</th>
         </thead>
 
         <tbody>
@@ -37,15 +36,7 @@
                     </td>
 
                     <td>
-                        <a href="/servico/cadastro?id=<?= $item->id ?>"><?= $item->data_servico ?></a>
-                    </td>
-
-                    <td>
-                        <a href="/servico/cadastro?id=<?= $item->id ?>"><?= $item->cliente ?></a>
-                    </td>
-
-                    <td>
-                        <a href="/servico/cadastro?id=<?= $item->id ?>"><?= $item->funcionario ?></a>
+                        <a href="/servico/cadastro?id=<?= $item->id ?>"><?= $item->valor_servico ?></a>
                     </td>
 
                 </tr>

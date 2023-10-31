@@ -122,11 +122,13 @@
                     <div class="row">
                         <div class="col">
                             <label for="cpf_cliente" class="form-label">CPF</label>
-                            <input class="form-control" type="text" name="cpf_cliente" id="cpf_cliente" value="<?= $model->cpf ?>">
+                            <input class="form-control" type="text" name="cpf_cliente" id="cpf_cliente" value="<?= $model->cpf ?>"
+                                maxlength="11" minlength="11">
                         </div>
                         <div class="col">
                             <label for="telefone_cliente" class="form-label">Telefone</label>
-                            <input class="form-control" type="text" name="telefone_cliente" id="telefone_cliente" value="<?= $model->telefone ?>">
+                            <input class="form-control" type="text" name="telefone_cliente" id="telefone_cliente" value="<?= $model->telefone ?>"
+                                maxlength="11" minlength="11">
                         </div>
                         <div class="col">
                             <label for="data_nascimento_cliente" class="form-label">Data de Nascimento</label>

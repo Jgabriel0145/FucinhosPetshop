@@ -3,8 +3,6 @@
 namespace App\Controller;
 
 use App\Model\ServicoModel;
-use App\Model\ClienteModel;
-use App\Model\FuncionarioModel;
 
 class ServicoController extends Controller
 {
@@ -12,23 +10,14 @@ class ServicoController extends Controller
     {
         parent::IsAuthenticated();
 
-        $model_cliente = new ClienteModel();
-        $model_cliente->GetAllRows();
-
-        $model_funcionario = new FuncionarioModel();
-        $model_funcionario->GetAllRows();
-
-        $model_servico = new ServicoModel();
+        $model = new ServicoModel();
 
         if (isset($_GET['id']))
         {
-            $model_servico = $model_servico->SearchById((int) $_GET['id']);
+            $model = $model->SearchById((int) $_GET['id']);
         }
-        
-
-        $models = [$model_servico, $model_cliente, $model_funcionario];
-        
-        parent::render('Servico/ServicoCadastro', $models);
+                
+        parent::render('Servico/ServicoCadastro', $model);
     }
 
     static public function Save() 
@@ -39,9 +28,7 @@ class ServicoController extends Controller
 
         $model->id = $_POST['id'];
         $model->descricao = $_POST['descricao_servico'];
-        $model->data_servico = $_POST['data_servico'];
-        $model->id_cliente = $_POST['id_cliente_servico'];
-        $model->id_funcionario = $_POST['id_funcionario_servico'];
+        $model->valor_servico = $_POST['valor_servico'];
 
         $model->Save();
 
