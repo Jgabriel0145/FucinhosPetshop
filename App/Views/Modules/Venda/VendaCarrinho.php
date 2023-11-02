@@ -117,6 +117,10 @@
 
     <br><br>
 
+    <h2>Valor Total da Compra: R$ <?= number_format($model_venda['total'], 2, ',', '.') ?>;</h2>
+
+    <br><br>
+
     <form action="/venda/cadastro/carrinho/ver/save" method="post">
         <label for="id_cliente">Cliente</label>
         <select name="id_cliente">
