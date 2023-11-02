@@ -58,6 +58,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `db_petshop`.`carrinho_temporario` (
   `id` INT NOT NULL AUTO_INCREMENT,
+  `tipo_venda` ENUM('P', 'S') NULL,
   `id_servico` INT NULL DEFAULT NULL,
   `quantidade_servico` INT NULL DEFAULT NULL,
   `valor_un_servico` DOUBLE NULL DEFAULT NULL,
@@ -167,6 +168,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
 
 
 
