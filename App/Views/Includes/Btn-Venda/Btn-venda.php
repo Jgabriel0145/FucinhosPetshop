@@ -1,5 +1,5 @@
 <body>
-    <a href="#">
+    <a href="/venda/cadastro">
 
         <button id="btn-venda" type="button" class="btn btn-success">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-plus-fill" viewBox="0 0 16 16">

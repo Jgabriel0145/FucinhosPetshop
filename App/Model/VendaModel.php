@@ -13,7 +13,8 @@ class VendaModel extends Model
     public $id_produto, $id_servico, $quantidade_produto, $quantidade_servico, $total_venda; 
 
     //carrinho
-    public $id_carrinho, $id_servico_carrinho, $id_produto_carrinho, $quantidade_produto_carrinho, $quantidade_servico_carrinho;
+    public $id_carrinho, $tipo_venda_carrinho, $id_servico_carrinho, $id_produto_carrinho;
+    public $quantidade_produto_carrinho, $quantidade_servico_carrinho;
     public $valor_un_produto_carrinho, $valor_un_servico_carrinho, $valor_total_carrinho;
 
     public function Save()
@@ -25,6 +26,11 @@ class VendaModel extends Model
     public function GetAllRows()
     {
         return $this->rows = (new VendaDAO())->Select();
+    }
+
+    public function CarrinhoGetAllRows()
+    {
+        return $this->rows = (new VendaDAO())->SelectCarrinho();
     }
 
     public function SearchById($id)

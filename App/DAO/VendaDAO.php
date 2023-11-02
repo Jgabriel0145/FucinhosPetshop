@@ -76,24 +76,47 @@ class VendaDAO extends DAO
 
     public function AddCarrinho(VendaModel $model)
     {
-        $sql = 'INSERT INTO carrinho_temporario (id_servico, quantidade_servico, valor_un_servico, id_produto, quantidade_produto, valor_un_produto, valor_total) VALUES (?, ?, ?, ?, ?, ?, ?);';
+        $sql = 'INSERT INTO carrinho_temporario (id_servico, tipo_venda, quantidade_servico, valor_un_servico, id_produto, quantidade_produto, valor_un_produto, valor_total) VALUES (?, ?, ?, ?, ?, ?, ?, ?);';
     
         $stmt = $this->conexao->prepare($sql);
 
         $stmt->bindValue(1, $model->id_servico_carrinho);
-        $stmt->bindValue(2, $model->quantidade_servico_carrinho);
-        $stmt->bindValue(3, $model->valor_un_servico_carrinho);
-        $stmt->bindValue(4, $model->id_produto_carrinho);
-        $stmt->bindValue(5, $model->quantidade_produto_carrinho);
-        $stmt->bindValue(6, $model->valor_un_produto_carrinho);
-        $stmt->bindValue(7, $model->valor_total_carrinho);
+        $stmt->bindValue(2, $model->tipo_venda_carrinho);
+        $stmt->bindValue(3, $model->quantidade_servico_carrinho);
+        $stmt->bindValue(4, $model->valor_un_servico_carrinho);
+        $stmt->bindValue(5, $model->id_produto_carrinho);
+        $stmt->bindValue(6, $model->quantidade_produto_carrinho);
+        $stmt->bindValue(7, $model->valor_un_produto_carrinho);
+        $stmt->bindValue(8, $model->valor_total_carrinho);
 
         $stmt->execute();
     }
 
     public function SelectCarrinho()
     {
+        $sql_p = 'SELECT c.id, c.tipo_venda, c.quantidade_produto, c.valor_un_produto, c.valor_total, p.descricao AS produto FROM carrinho_temporario c 
+        JOIN produto p ON (c.id_produto = p.id)
+        WHERE c.tipo_venda = "P";';
 
+        $stmt = $this->conexao->prepare($sql_p);
+
+        $stmt->execute();
+
+        $produtos_carrinho = $stmt->fetchAll(DAO::FETCH_CLASS);
+
+        $sql_s = 'SELECT c.id, c.tipo_venda, c.quantidade_servico, c.valor_un_servico, c.valor_total, s.descricao AS servico FROM carrinho_temporario c 
+        JOIN servico s ON (c.id_servico = s.id)
+        WHERE c.tipo_venda = "S";';
+
+        $stmt = $this->conexao->prepare($sql_s);
+
+        $stmt->execute();
+
+        $servicos_carrinho = $stmt->fetchAll(DAO::FETCH_CLASS);
+
+        $carrinho = [$produtos_carrinho, $servicos_carrinho];
+        
+        return $carrinho;
     }
 
     public function DeleteCarrinho($id)
