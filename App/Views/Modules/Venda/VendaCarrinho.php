@@ -41,11 +41,11 @@
                     </td>
 
                     <td>
-                        <a href=""><?= $produtos[3] ?></a>
+                        <a href="">R$ <?= number_format($produtos[3], 2, ',', '.') ?></a>
                     </td>
 
                     <td>
-                        <a href=""><?= $produtos[4] ?></a>
+                        <a href="">R$ <?= number_format($produtos[4], 2, ',', '.') ?></a>
                     </td>
                 </tr>
             
@@ -93,11 +93,11 @@
                     </td>
 
                     <td>
-                        <a href=""><?= $servicos[3] ?></a>
+                        <a href="">R$ <?= number_format($servicos[3], 2, ',', '.') ?></a>
                     </td>
 
                     <td>
-                        <a href=""><?= $servicos[4] ?></a>
+                        <a href="">R$ <?= number_format($servicos[4], 2, ',', '.') ?></a>
                     </td>
                 </tr>
             
