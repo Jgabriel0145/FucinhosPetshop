@@ -111,33 +111,6 @@
             }
         }
       </script>
-      <br><br>
-
-      <label for="id_cliente">Cliente</label>
-      <select name="id_cliente">
-        <option value="nenhum" selected>Nenhum</option>
-        <?php if (count($model_cliente->rows) != 0): ?>
-          <?php foreach($model_cliente->rows as $cliente): ?>
-            <option value="<?= $cliente->id ?>"><?= $cliente->nome ?></option>
-          <?php endforeach ?>
-        <?php else: ?>
-          <option>Cadastre o cliente...</option>
-        <?php endif ?>
-      </select>
-
-      <br><br>
-
-      <label for="id_funcionario">Funcionário</label>
-      <select name="id_funcionario">
-        <option value="nenhum" selected>Nenhum</option>
-        <?php if (count($model_funcionario->rows) != 0): ?>
-          <?php foreach($model_funcionario->rows as $funcionario): ?>
-            <option value="<?= $funcionario->id ?>"><?= $funcionario->nome ?></option>
-          <?php endforeach ?>
-        <?php else: ?>
-          <option>Cadastre o funcionário...</option>
-        <?php endif ?>
-      </select>
       
       <br><br>
 

@@ -6,9 +6,9 @@
     <title>Carrinho</title>
 
     <?php
-        /*$model_venda = $model[0];
-        $model_produto = $model[1];
-        $model_servico = $model[2];*/
+        $model_venda = $model[0];
+        $model_cliente = $model[1];
+        $model_funcionario = $model[2];
     ?>
 </head>
 <body>
@@ -24,7 +24,7 @@
         </thead>
 
         <tbody>
-            <?php foreach($model['produtos'] as $produtos): ?>
+            <?php foreach($model_venda['produtos'] as $produtos): ?>
                 <tr>
                     <td>
                         <a href="">X</a>
@@ -53,7 +53,7 @@
             <?php endforeach ?>
 
 
-            <?php if (count($model['produtos']) == 0): ?>
+            <?php if (count($model_venda['produtos']) == 0): ?>
                 <tr>
                     <td colspan="6">
                         Nenhum produto.
@@ -76,7 +76,7 @@
         </thead>
 
         <tbody>
-            <?php foreach($model['servicos'] as $servicos): ?>
+            <?php foreach($model_venda['servicos'] as $servicos): ?>
                 <tr>
                     <td>
                         <a href="">X</a>
@@ -105,7 +105,7 @@
             <?php endforeach ?>
 
 
-            <?php if (count($model['servicos']) == 0): ?>
+            <?php if (count($model_venda['servicos']) == 0): ?>
                 <tr>
                     <td colspan="6">
                         Nenhum serviço.
@@ -115,10 +115,43 @@
         </tbody>
     </table>
 
+    <br><br>
+
+    <h2>Valor Total da Compra: R$ <?= number_format($model_venda['total'], 2, ',', '.') ?>;</h2>
+
+    <br><br>
+
     <form action="/venda/cadastro/carrinho/ver/save" method="post">
+        <label for="id_cliente">Cliente</label>
+        <select name="id_cliente">
+            <option value="nenhum" selected>Nenhum</option>
+            <?php if (count($model_cliente->rows) != 0): ?>
+                <?php foreach($model_cliente->rows as $cliente): ?>
+                    <option value="<?= $cliente->id ?>"><?= $cliente->nome ?></option>
+                <?php endforeach ?>
+            <?php else: ?>
+                <option>Cadastre o cliente...</option>
+            <?php endif ?>
+        </select>
+
+        <br><br>
+
+        <label for="id_funcionario">Funcionário</label>
+        <select name="id_funcionario">
+            <option value="nenhum" selected>Nenhum</option>
+            <?php if (count($model_funcionario->rows) != 0): ?>
+                <?php foreach($model_funcionario->rows as $funcionario): ?>
+                    <option value="<?= $funcionario->id ?>"><?= $funcionario->nome ?></option>
+                <?php endforeach ?>
+            <?php else: ?>
+                <option>Cadastre o funcionário...</option>
+            <?php endif ?>
+        </select>
+
+        <br><br>
+
         <button type="submit">Confimar venda</button>
     </form>
-    
     
 </body>
 </html>
