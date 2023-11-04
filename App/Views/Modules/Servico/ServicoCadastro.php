@@ -8,7 +8,7 @@
 </head>
 <body>
 
-    <?php //var_dump($model); ?>
+    <?php include "../App/Views/Includes/Navbar/navbar.php" ?>
 
     <form action="/servico/cadastro/save" method="post">
         <input type="hidden" name="id" value="<?= $model->id ?>">
@@ -20,8 +20,6 @@
         <button type="submit">Enviar</button>
     </form>
 
-    
-  <?php //include "../App/Views/Includes/Navbar/navbar.php" ?>
     
 </body>
 </html>

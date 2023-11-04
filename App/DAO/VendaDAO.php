@@ -12,50 +12,106 @@ class VendaDAO extends DAO
         parent::__construct();
     }
 
-    public function Insert(VendaModel $model)
+    public function Insert($carrinho, VendaModel $model)
     {
-        $sql = 'INSERT INTO venda (id_itens_venda, id_cliente, id_funcionario) VALUES (?, ?, ?);';
+        $sql = 'INSERT INTO venda (valor_total_venda, id_cliente, id_funcionario) VALUES (?, ?, ?);';
 
         $stmt = $this->conexao->prepare($sql);
 
-        $stmt->bindValue(1, $model->id_venda_itens);
+        $stmt->bindValue(1, $carrinho['total']);
         $stmt->bindValue(2, $model->id_cliente);
         $stmt->bindValue(3, $model->id_funcionario);
 
         $stmt->execute();
-    }
 
-    public function Update(VendaModel $model)
-    {
-        $sql = 'UPDATE venda SET id_itens_venda =?, id_cliente =?, id_funcionario =? WHERE id =?;';
+        $id_inserido = $this->conexao->lastInsertId();
 
-        $stmt = $this->conexao->prepare($sql);
+        if (count($carrinho['produtos']) != 0)
+        {
+            foreach ($carrinho['produtos'] as $item)
+            {
+                $sql = 'INSERT INTO venda_itens_produto (id_produto, quantidade_produto, total_venda, id_venda) VALUES (?, ?, ?, ?)';
 
-        $stmt->bindValue(1, $model->id_venda_itens);
-        $stmt->bindValue(2, $model->id_cliente);
-        $stmt->bindValue(3, $model->id_funcionario);
-        $stmt->bindValue(4, $model->id);
+                $stmt = $this->conexao->prepare($sql);
 
-        $stmt->execute();
+                $stmt->bindValue(1, $item[5]);
+                $stmt->bindValue(2, $item[2]);
+                $stmt->bindValue(3, $item[4]);
+                $stmt->bindValue(4, $id_inserido);
+
+                $stmt->execute();
+            }
+        }
+
+        if (count($carrinho['servicos']) > 0)
+        {
+            foreach ($carrinho['servicos'] as $item)
+            {
+                $sql = 'INSERT INTO venda_itens_servico (id_servico, quantidade_servico, valor_total, id_venda) VALUES (?, ?, ?, ?)';
+
+                $stmt = $this->conexao->prepare($sql);
+
+                $stmt->bindValue(1, $item[5]);
+                $stmt->bindValue(2, $item[2]);
+                $stmt->bindValue(3, $item[4]);
+                $stmt->bindValue(4, $id_inserido);
+
+                $stmt->execute();
+            }
+        }        
     }
 
     public function Select()
     {
-        $sql = 'SELECT v.*, c.id AS cliente_id, c.nome AS cliente, c.cpf AS cpf_cliente, c.telefone, c.data_nascimento, c.endereco, 
-                    f.id AS funcionario_id, f.nome AS funcionario, f.cpf AS cpf_funcionario, f.email, f.senha, f.admin, 
-                    p.id AS produto_id, p.descricao AS descricao_produto, p.preco, p.estoque, 
-                    s.id AS servico_id, s.data_servico, s.descricao as descricao_servico, s.id_cliente AS servico_cliente_id , s.id_funcionario AS servico_funcionario_id FROM venda v
-                    JOIN venda_itens vi ON (v.id_venda_itens = vi.id)
-                    JOIN cliente c ON (v.id_cliente = c.id)
-                    JOIN funcionario f ON (v.id_funcionario = f.id)
-                    JOIN produto p ON (vi.id_produto = p.id)
-                    JOIN servico s ON (vi.id_servico = s.id);';
+        $sql = 'SELECT v.id, v.id AS numero_venda, v.valor_total_venda AS total_venda, c.nome AS cliente, f.nome AS funcionario, v.data_venda FROM venda v
+                JOIN cliente c ON (v.id_cliente = c.id)
+                JOIN funcionario f ON (v.id_funcionario = f.id)
+                ORDER BY v.id;';
 
         $stmt = $this->conexao->prepare($sql);
 
         $stmt->execute();
 
         return $stmt->fetchAll(DAO::FETCH_CLASS);
+    }
+
+    public function SelectItens($id)
+    {
+        //Produtos
+        $sql = 'SELECT v.id, v.id AS numero_venda, p.descricao AS produto, vp.quantidade_produto, vp.total_venda AS valor_total_produto, 
+                c.nome AS cliente, f.nome AS funcionario, v.data_venda FROM venda_itens_produto vp
+                JOIN venda v ON (vp.id_venda = v.id)
+                JOIN produto p ON (vp.id_produto = p.id)
+                JOIN cliente c ON (v.id_cliente = c.id)
+                JOIN funcionario f ON (v.id_funcionario = f.id)
+                WHERE v.id = ?;';
+
+        $stmt = $this->conexao->prepare($sql);
+
+        $stmt->bindValue(1, $id);
+
+        $stmt->execute();
+
+        $listagem['produtos'] = $stmt->fetchAll(DAO::FETCH_CLASS);
+
+        //Serviços
+        $sql = 'SELECT v.id, v.id AS numero_venda, s.descricao AS servico, vs.quantidade_servico, vs.valor_total AS valor_total_servico,
+                c.nome AS cliente, f.nome AS funcionario, v.data_venda FROM venda_itens_servico vs
+                JOIN venda v ON (vs.id_venda = v.id)
+                JOIN servico s ON (vs.id_servico = s.id)
+                JOIN cliente c ON (v.id_cliente = c.id)
+                JOIN funcionario f ON (v.id_funcionario = f.id)
+                WHERE v.id = ?;';
+
+        $stmt = $this->conexao->prepare($sql);
+
+        $stmt->bindValue(1, $id);
+
+        $stmt->execute();
+
+        $listagem['servicos'] = $stmt->fetchAll(DAO::FETCH_CLASS);
+
+        return $listagem;
     }
 
     public function SearchById($id)
@@ -94,7 +150,7 @@ class VendaDAO extends DAO
 
     public function SelectCarrinho()
     {
-        $sql_p = 'SELECT c.id, c.tipo_venda, c.quantidade_produto, c.valor_un_produto, c.valor_total, p.descricao AS produto FROM carrinho_temporario c 
+        $sql_p = 'SELECT c.id, c.tipo_venda, c.quantidade_produto, c.valor_un_produto, c.valor_total,p.id as produto_id, p.descricao AS produto FROM carrinho_temporario c 
         JOIN produto p ON (c.id_produto = p.id)
         WHERE c.tipo_venda = "P";';
 
@@ -104,9 +160,9 @@ class VendaDAO extends DAO
 
         $produtos_carrinho = $stmt->fetchAll(DAO::FETCH_CLASS);
 
-        $sql_s = 'SELECT c.id, c.tipo_venda, c.quantidade_servico, c.valor_un_servico, c.valor_total, s.descricao AS servico FROM carrinho_temporario c 
+        $sql_s = 'SELECT c.id, c.tipo_venda, c.quantidade_servico, c.valor_un_servico, c.valor_total,s.id AS servico_id, s.descricao AS servico FROM carrinho_temporario c 
         JOIN servico s ON (c.id_servico = s.id)
-        WHERE c.tipo_venda = "S";';
+        WHERE c.tipo_venda = "S"';
 
         $stmt = $this->conexao->prepare($sql_s);
 
@@ -124,7 +180,7 @@ class VendaDAO extends DAO
 
     }
 
-    public function DeleteCarrinhoGeral()
+    public function LimparCarrinho()
     {
         $sql = 'TRUNCATE carrinho_temporario;';
 

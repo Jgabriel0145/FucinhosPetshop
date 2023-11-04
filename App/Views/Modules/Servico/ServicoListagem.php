@@ -9,11 +9,9 @@
 </head>
 <body>
       
-  <?php //include "../App/Views/Includes/Navbar/navbar.php" ?>
+    <?php include "../App/Views/Includes/Navbar/navbar.php" ?>
 
-  <?php //var_dump($model->rows); ?>
-
-  <table>
+    <table>
         <thead>
             <th>Excluir</th>
             <th>Id</th>

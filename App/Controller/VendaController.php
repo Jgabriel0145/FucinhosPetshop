@@ -61,13 +61,13 @@ class VendaController extends Controller
 
         foreach ($model->rows[0] as $item)
         {
-            array_push($carrinho['produtos'], [$item->id, $item->produto, $item->quantidade_produto, $item->valor_un_produto, $item->valor_total]); 
+            array_push($carrinho['produtos'], [$item->id, $item->produto, $item->quantidade_produto, $item->valor_un_produto, $item->valor_total, $item->produto_id]); 
             $carrinho['total'] += $item->valor_total; 
         }
 
         foreach ($model->rows[1] as $item)
         {
-            array_push($carrinho['servicos'], [$item->id, $item->servico, $item->quantidade_servico, $item->valor_un_servico, $item->valor_total]);
+            array_push($carrinho['servicos'], [$item->id, $item->servico, $item->quantidade_servico, $item->valor_un_servico, $item->valor_total, $item->servico_id]);
             $carrinho['total'] += $item->valor_total;
         }
 
@@ -92,29 +92,65 @@ class VendaController extends Controller
 
         $carrinho['produtos'] = [];
         $carrinho['servicos'] = [];
+        $carrinho['total'] = 0;
 
         foreach ($model->rows[0] as $item)
         {
-            array_push($carrinho['produtos'], [$item->id, $item->produto, $item->quantidade_produto, $item->valor_un_produto, $item->valor_total]);  
+            array_push($carrinho['produtos'], [$item->id, $item->produto, $item->quantidade_produto, $item->valor_un_produto, $item->valor_total, $item->produto_id]); 
+            $carrinho['total'] += $item->valor_total; 
         }
 
         foreach ($model->rows[1] as $item)
         {
-            array_push($carrinho['servicos'], [$item->id, $item->servico, $item->quantidade_servico, $item->valor_un_servico, $item->valor_total]);
+            array_push($carrinho['servicos'], [$item->id, $item->servico, $item->quantidade_servico, $item->valor_un_servico, $item->valor_total, $item->servico_id]);
+            $carrinho['total'] += $item->valor_total;
         }
 
 
         $model->id_cliente = $_POST['id_cliente'];
         $model->id_funcionario = $_POST['id_funcionario'];
+        $model->valor_total_venda = $carrinho['total'];
 
-        //$model->Save();
+        $model->Save($carrinho, $model);
+        $model->LimparCarrinho();
+        
+        header('Location: /venda/listagem');
     }
 
     static public function List()
     {
         parent::IsAuthenticated();
 
-        parent::render('Venda/VendaListagem');
+        $model = new VendaModel();
+        $model->GetAllRows();
+
+        parent::render('Venda/VendaListagem', $model);
+    }
+
+    static public function VerItensList()
+    {
+        parent::IsAuthenticated();
+
+        $model = new VendaModel();
+        $model->rows = $model->VerItensList($_POST['id_procurar_itens']);
+
+        $listagem['produtos'] = [];
+        $listagem['servicos'] = [];
+        $listagem['total'] = 0;
+
+        foreach ($model->rows['produtos'] as $item)
+        {
+            array_push($listagem['produtos'], [$item->id, $item->numero_venda, $item->produto, $item->quantidade_produto, $item->valor_total_produto, $item->cliente, $item->funcionario, $item->data_venda]); 
+            $listagem['total'] += $item->valor_total_produto;
+        }
+
+        foreach ($model->rows['servicos'] as $item)
+        {
+            array_push($listagem['servicos'], [$item->id, $item->numero_venda, $item->servico, $item->quantidade_servico, $item->valor_total_servico, $item->cliente, $item->funcionario, $item->data_venda]); 
+            $listagem['total'] += $item->valor_total_servico;
+        }
+
+        parent::render('Venda/VerItensListagem', $listagem);
     }
 
     static public function Delete()
