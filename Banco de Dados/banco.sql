@@ -58,7 +58,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `db_petshop`.`carrinho_temporario` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `tipo_venda` ENUM('P', 'S') NULL,
+  `tipo_venda` ENUM('P', 'S') NULL DEFAULT NULL,
   `id_servico` INT NULL DEFAULT NULL,
   `quantidade_servico` INT NULL DEFAULT NULL,
   `valor_un_servico` DOUBLE NULL DEFAULT NULL,
@@ -116,36 +116,12 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `db_petshop`.`venda_itens`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `db_petshop`.`venda_itens` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `id_produto` INT NULL DEFAULT NULL,
-  `quantidade_produto` INT NULL DEFAULT NULL,
-  `id_servico` INT NULL DEFAULT NULL,
-  `quantidade_servico` INT NULL DEFAULT NULL,
-  `total_venda` DOUBLE NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_venda_itens_produto_idx` (`id_produto` ASC) VISIBLE,
-  INDEX `fk_venda_itens_servico_idx` (`id_servico` ASC) VISIBLE,
-  CONSTRAINT `fk_venda_itens_produto`
-    FOREIGN KEY (`id_produto`)
-    REFERENCES `db_petshop`.`produto` (`id`),
-  CONSTRAINT `fk_venda_itens_servico`
-    FOREIGN KEY (`id_servico`)
-    REFERENCES `db_petshop`.`servico` (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
 -- Table `db_petshop`.`venda`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `db_petshop`.`venda` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `data_venda` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
-  `id_venda_itens` INT NULL DEFAULT NULL,
+  `valor_total_venda` DOUBLE NULL DEFAULT NULL,
   `id_cliente` INT NULL DEFAULT NULL,
   `id_funcionario` INT NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -156,10 +132,53 @@ CREATE TABLE IF NOT EXISTS `db_petshop`.`venda` (
     REFERENCES `db_petshop`.`cliente` (`id`),
   CONSTRAINT `fk_venda_funcionario`
     FOREIGN KEY (`id_funcionario`)
-    REFERENCES `db_petshop`.`funcionario` (`id`),
-  CONSTRAINT `fk_venda_venda_itens`
-    FOREIGN KEY (`id`)
-    REFERENCES `db_petshop`.`venda_itens` (`id`))
+    REFERENCES `db_petshop`.`funcionario` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `db_petshop`.`venda_itens_produto`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `db_petshop`.`venda_itens_produto` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `id_produto` INT NULL DEFAULT NULL,
+  `quantidade_produto` INT NULL DEFAULT NULL,
+  `total_venda` DOUBLE NULL DEFAULT NULL,
+  `id_venda` INT NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_venda_itens_produto_idx` (`id_produto` ASC) VISIBLE,
+  INDEX `fk_venda_itens_produto_venda_idx` (`id_venda` ASC) VISIBLE,
+  CONSTRAINT `fk_venda_itens_produto_p`
+    FOREIGN KEY (`id_produto`)
+    REFERENCES `db_petshop`.`produto` (`id`),
+  CONSTRAINT `fk_venda_itens_produto_venda`
+    FOREIGN KEY (`id_venda`)
+    REFERENCES `db_petshop`.`venda` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `db_petshop`.`venda_itens_servico`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `db_petshop`.`venda_itens_servico` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `id_servico` INT NULL DEFAULT NULL,
+  `quantidade_servico` INT NULL DEFAULT NULL,
+  `valor_total` DOUBLE NULL DEFAULT NULL,
+  `id_venda` INT NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_venda_itens_servico_idx` (`id_servico` ASC) VISIBLE,
+  INDEX `fk_venda_itens_servico_venda_idx` (`id_venda` ASC) VISIBLE,
+  CONSTRAINT `fk_venda_itens_servico_s`
+    FOREIGN KEY (`id_servico`)
+    REFERENCES `db_petshop`.`servico` (`id`),
+  CONSTRAINT `fk_venda_itens_servico_venda`
+    FOREIGN KEY (`id_venda`)
+    REFERENCES `db_petshop`.`venda` (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
@@ -168,7 +187,6 @@ COLLATE = utf8mb4_0900_ai_ci;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
-
 
 
 

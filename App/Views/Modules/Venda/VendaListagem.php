@@ -11,5 +11,6 @@
       
   <?php include "../App/Views/Includes/Navbar/navbar.php" ?>
     
+  <h2>Venda Listagem</h2>
 </body>
 </html>

@@ -7,20 +7,16 @@ use App\DAO\VendaDAO;
 class VendaModel extends Model
 {
     //venda
-    public $id, $data_venda, $id_venda_itens, $id_cliente, $id_funcionario;
-
-    //venda_itens
-    public $id_produto, $id_servico, $quantidade_produto, $quantidade_servico, $total_venda; 
+    public $id, $data_venda, $id_cliente, $id_funcionario, $valor_total_venda; 
 
     //carrinho
     public $id_carrinho, $tipo_venda_carrinho, $id_servico_carrinho, $id_produto_carrinho;
     public $quantidade_produto_carrinho, $quantidade_servico_carrinho;
     public $valor_un_produto_carrinho, $valor_un_servico_carrinho, $valor_total_carrinho;
 
-    public function Save()
+    public function Save($carrinho, VendaModel $model)
     {
-        if ($this->id == null) (new VendaDAO())->Insert($this);
-        else (new VendaDAO())->Update($this);
+        (new VendaDAO())->Insert($carrinho, $model);
     }
 
     public function GetAllRows()
@@ -68,8 +64,8 @@ class VendaModel extends Model
         (new VendaDAO())->AddCarrinho($this);
     }
 
-    public function SaveCarrinho()
+    public function LimparCarrinho()
     {
-        
+        (new VendaDAO())->LimparCarrinho();
     }
 }
