@@ -63,21 +63,55 @@ class VendaDAO extends DAO
 
     public function Select()
     {
-        $sql = 'SELECT v.*, c.id AS cliente_id, c.nome AS cliente, c.cpf AS cpf_cliente, c.telefone, c.data_nascimento, c.endereco, 
-                    f.id AS funcionario_id, f.nome AS funcionario, f.cpf AS cpf_funcionario, f.email, f.senha, f.admin, 
-                    p.id AS produto_id, p.descricao AS descricao_produto, p.preco, p.estoque, 
-                    s.id AS servico_id, s.data_servico, s.descricao as descricao_servico, s.id_cliente AS servico_cliente_id , s.id_funcionario AS servico_funcionario_id FROM venda v
-                    JOIN venda_itens vi ON (v.id_venda_itens = vi.id)
-                    JOIN cliente c ON (v.id_cliente = c.id)
-                    JOIN funcionario f ON (v.id_funcionario = f.id)
-                    JOIN produto p ON (vi.id_produto = p.id)
-                    JOIN servico s ON (vi.id_servico = s.id);';
+        $sql = 'SELECT v.id, v.id AS numero_venda, v.valor_total_venda AS total_venda, c.nome AS cliente, f.nome AS funcionario, v.data_venda FROM venda v
+                JOIN cliente c ON (v.id_cliente = c.id)
+                JOIN funcionario f ON (v.id_funcionario = f.id)
+                ORDER BY v.id;';
 
         $stmt = $this->conexao->prepare($sql);
 
         $stmt->execute();
 
         return $stmt->fetchAll(DAO::FETCH_CLASS);
+    }
+
+    public function SelectItens($id)
+    {
+        //Produtos
+        $sql = 'SELECT v.id, v.id AS numero_venda, p.descricao AS produto, vp.quantidade_produto, vp.total_venda AS valor_total_produto, 
+                c.nome AS cliente, f.nome AS funcionario, v.data_venda FROM venda_itens_produto vp
+                JOIN venda v ON (vp.id_venda = v.id)
+                JOIN produto p ON (vp.id_produto = p.id)
+                JOIN cliente c ON (v.id_cliente = c.id)
+                JOIN funcionario f ON (v.id_funcionario = f.id)
+                WHERE v.id = ?;';
+
+        $stmt = $this->conexao->prepare($sql);
+
+        $stmt->bindValue(1, $id);
+
+        $stmt->execute();
+
+        $listagem['produtos'] = $stmt->fetchAll(DAO::FETCH_CLASS);
+
+        //Serviços
+        $sql = 'SELECT v.id, v.id AS numero_venda, s.descricao AS servico, vs.quantidade_servico, vs.valor_total AS valor_total_servico,
+                c.nome AS cliente, f.nome AS funcionario, v.data_venda FROM venda_itens_servico vs
+                JOIN venda v ON (vs.id_venda = v.id)
+                JOIN servico s ON (vs.id_servico = s.id)
+                JOIN cliente c ON (v.id_cliente = c.id)
+                JOIN funcionario f ON (v.id_funcionario = f.id)
+                WHERE v.id = ?;';
+
+        $stmt = $this->conexao->prepare($sql);
+
+        $stmt->bindValue(1, $id);
+
+        $stmt->execute();
+
+        $listagem['servicos'] = $stmt->fetchAll(DAO::FETCH_CLASS);
+
+        return $listagem;
     }
 
     public function SearchById($id)

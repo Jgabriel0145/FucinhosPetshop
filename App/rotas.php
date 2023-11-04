@@ -133,6 +133,10 @@ switch ($url)
         VendaController::List();
         break;
 
+    case '/venda/listagem/veritens':
+        VendaController::VerItensList();
+        break;
+
     case '/venda/excluir':
         VendaController::Delete();
         break;

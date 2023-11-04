@@ -121,7 +121,36 @@ class VendaController extends Controller
     {
         parent::IsAuthenticated();
 
-        parent::render('Venda/VendaListagem');
+        $model = new VendaModel();
+        $model->GetAllRows();
+
+        parent::render('Venda/VendaListagem', $model);
+    }
+
+    static public function VerItensList()
+    {
+        parent::IsAuthenticated();
+
+        $model = new VendaModel();
+        $model->rows = $model->VerItensList($_POST['id_procurar_itens']);
+
+        $listagem['produtos'] = [];
+        $listagem['servicos'] = [];
+        $listagem['total'] = 0;
+
+        foreach ($model->rows['produtos'] as $item)
+        {
+            array_push($listagem['produtos'], [$item->id, $item->numero_venda, $item->produto, $item->quantidade_produto, $item->valor_total_produto, $item->cliente, $item->funcionario, $item->data_venda]); 
+            $listagem['total'] += $item->valor_total_produto;
+        }
+
+        foreach ($model->rows['servicos'] as $item)
+        {
+            array_push($listagem['servicos'], [$item->id, $item->numero_venda, $item->servico, $item->quantidade_servico, $item->valor_total_servico, $item->cliente, $item->funcionario, $item->data_venda]); 
+            $listagem['total'] += $item->valor_total_servico;
+        }
+
+        parent::render('Venda/VerItensListagem', $listagem);
     }
 
     static public function Delete()

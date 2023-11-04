@@ -7,7 +7,7 @@ use App\DAO\VendaDAO;
 class VendaModel extends Model
 {
     //venda
-    public $id, $data_venda, $id_cliente, $id_funcionario, $valor_total_venda; 
+    public $id, $data_venda, $id_cliente, $id_funcionario, $valor_total_venda;
 
     //carrinho
     public $id_carrinho, $tipo_venda_carrinho, $id_servico_carrinho, $id_produto_carrinho;
@@ -67,5 +67,10 @@ class VendaModel extends Model
     public function LimparCarrinho()
     {
         (new VendaDAO())->LimparCarrinho();
+    }
+
+    public function VerItensList($id)
+    {
+        return $this->rows = (new VendaDAO())->SelectItens($id);
     }
 }
