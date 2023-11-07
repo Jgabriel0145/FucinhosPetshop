@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php include "../App/Views/Includes/CssConfig.php" ?>
     <title>Fucinho's Petshop</title>
+    <style>
+        body{
+            padding: 75px 150px;
+        }
+    </style>
 </head>
 <body>
     
