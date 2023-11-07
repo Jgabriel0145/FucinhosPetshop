@@ -78,16 +78,13 @@ switch ($url)
     
     //Produto
     case '/produto/cadastro':
-        ProdutoController::Form();
+        ProdutoController::FormAndList();
         break;
 
     case '/produto/cadastro/save':
         ProdutoController::Save();
         break;
 
-    case '/produto/listagem':
-        ProdutoController::List();
-        break;
 
     case '/produto/excluir':
         ProdutoController::Delete();
