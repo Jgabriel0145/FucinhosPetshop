@@ -19,7 +19,7 @@
         }
 
         a {
-            color: red;
+            color: #1aae9f;
 
         }
     </style>
@@ -32,8 +32,8 @@
     <section class="home">
         <div class="text">Clientes</div>
         <button type="button" id="btn-cliente" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Adicionar cliente</button>
-         
-        
+
+
 
 
         <section class="box-table" id="list-cliente">
@@ -47,19 +47,12 @@
                         <th scope="col">Endereço</th>
                     </tr>
                 </thead>
-                <tbody>
-
-
-
-                    <div class="tudo">
-                        <div class="emcima">
-
 
                 <tbody>
                     <?php foreach ($model->rows as $item) : ?>
 
                         <tr>
-                            
+
                             <td>
                                 <a href="/cliente/cadastro?id=<?= $item->id ?>"><?= $item->nome ?></a>
                             </td>
@@ -95,8 +88,7 @@
 
                 </tbody>
             </table>
-            </div>
-            </div>
+
         </section>
 
 

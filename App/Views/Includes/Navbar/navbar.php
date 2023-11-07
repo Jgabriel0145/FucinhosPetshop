@@ -44,6 +44,7 @@
                             <span class="text nav-text">Adicionar</span>
                         </a>
                     </li>
+                    <div class="submenu">
                     <div>
                         <li class="nav-link sub-item">
                             <a href="/cliente/cadastro">
@@ -60,8 +61,9 @@
                             </a>
                         </li>
                     </div>
+                    </div>
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="/produto/cadastro">
                             <i class='bx bxs-package icon'></i>
                             <span class="text nav-text">Estoque</span>
                         </a>
@@ -75,7 +77,7 @@
                     </li>
 
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="/venda/cadastro">
                             <i class='bx bxs-cart-add icon'></i>
                             <span class="text nav-text">Nova venda</span>
                         </a>

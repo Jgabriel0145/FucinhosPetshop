@@ -238,9 +238,17 @@
             margin-left: -30px;
         }
 
+        .sidebar .menu-bar .menu-links div {
+            background-color: #1aae9f;
+            margin: 0;
+            padding: 0;
+        }
+
         .sidebar .menu-bar .menu-links div li a span {
             font-size: 15px;
+            color: #fff;
         }
+
    
         .menu-bar::-webkit-scrollbar {
             display: none;
@@ -446,6 +454,32 @@
             margin-left: -280px;
             margin-top:10px;
         }
+
+        #list-cliente{
+            margin-left: -280px;
+            margin-top:10px;
+        }
+
+        .sidebar .menu-bar .menu-links .submenu{
+            display: flex;
+            flex-direction: column;
+            height: 100px;
+            opacity: 100%;
+            transition: var(--tran-03);
+        }
+
+        .sidebar .menu-bar .menu-links .submenu div li{
+            margin:0;
+            padding: 0;
+            transition: var(--tran-03);
+        }
+
+        .sidebar.close .menu-bar .menu-links .submenu{
+            height: 0px;
+            opacity: 0%;
+            transition: var(--tran-03);
+        }
+
         
     </style>
 </head>

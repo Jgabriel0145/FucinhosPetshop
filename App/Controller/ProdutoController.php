@@ -6,13 +6,17 @@ use App\Model\ProdutoModel;
 
 class ProdutoController extends Controller
 {
-    static public function Form()
+    static public function FormAndList()
     {
         parent::IsAuthenticated();
 
         $model = new ProdutoModel();
 
         if (isset($_GET['id'])) $model = $model->SearchById((int) $_GET['id']);
+
+        $model = new ProdutoModel();
+
+        $model->GetAllRows();
 
         parent::render('Produto/ProdutoCadastro', $model);
     }
@@ -30,18 +34,7 @@ class ProdutoController extends Controller
 
         $model->Save();
 
-        header('Location: /produto/listagem');
-    }
-
-    static public function List()
-    {
-        parent::IsAuthenticated();
-
-        $model = new ProdutoModel();
-
-        $model->GetAllRows();
-
-        parent::render('Produto/ProdutoListagem', $model);
+        header('Location: /produto/cadastro');
     }
 
     static public function Delete()
@@ -50,6 +43,6 @@ class ProdutoController extends Controller
 
         (new ProdutoModel())->Delete((int) $_GET['id']);
 
-        header('Location: /produto/listagem');
+        header('Location: /produto/cadastro');
     }
 }
