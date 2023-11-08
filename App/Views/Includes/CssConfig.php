@@ -399,38 +399,6 @@
             margin-top: 1%;
         }
 
-        .conteudo {
-            margin-left: 60px;
-        }
-
-        #btn-venda {
-            position: relative;
-            right: 0;
-            bottom: 0;
-            width: 80px;
-            height: 80px;
-            border-radius: 15px;
-            background: #1aae9f;
-            margin-left: 95%;
-            border-width: 0;
-            margin-top: 100px;
-            transition: width 0.7s;
-        }
-
-        #btn-venda:hover {
-            width: 150px;
-        }
-
-        #btn-venda svg {
-            scale: 180%;
-            margin-bottom: 7px;
-        }
-
-        .btn-venda i p {
-            font-size: 20px;
-            color: #d1efec;
-            visibility: hidden;
-        }
 
         .modal {
             padding: 0;
@@ -455,7 +423,12 @@
             margin-top:10px;
         }
 
-        #list-cliente{
+        #list-animal{
+            margin-left: 53px;
+            margin-top:10px;
+        }
+
+        #list-produto{
             margin-left: -280px;
             margin-top:10px;
         }

@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cadastro de Vendas</title>
-  <?php //include "../App/Views/Includes/CssConfig.php" 
+  <?php include "../App/Views/Includes/CssConfig.php" 
   ?>
 
   <?php
@@ -24,6 +24,10 @@
     .id_produto_servico {
       visibility: hidden;
     }
+
+    .home{
+      padding-left: 200px;
+    }
   </style>
 
   <? //php include VIEWS.'Venda/Includes/EsconderSelect.php' 
@@ -31,9 +35,8 @@
 </head>
 
 <body>
-
+<?php include "../App/Views/Includes/Navbar/navbar.php" ?>
   <section class="home">
-    <?php include "../App/Views/Includes/Navbar/navbar.php" ?>
 
     <form action="/venda/cadastro/carrinho" method="post">
       <input type="hidden" name="id">

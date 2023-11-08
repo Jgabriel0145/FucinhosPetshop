@@ -34,11 +34,10 @@
         <button type="button" id="btn-cliente" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Adicionar produto</button>
 
         <section class="box-table" id="list-produto">
-            <table>
+            <table  class="table">
                 <thead>
                     <tr>
                         <th scope="col">Excluir</th>
-                        <th scope="col">Id</th>
                         <th scope="col">Descrição</th>
                         <th scope="col">Preço</th>
                         <th scope="col">Estoque</th>
@@ -52,8 +51,6 @@
                             <td>
                                 <a href="/produto/excluir?id=<?= $item->id ?>">X</a>
                             </td>
-
-                            <td><a><?= $item->id ?></a></td>
 
                             <td>
                                 <a href="/produto/cadastro?id=<?= $item->id ?>"><?= $item->descricao ?></a>
