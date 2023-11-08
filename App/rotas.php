@@ -28,15 +28,11 @@ switch ($url)
 
     //Animal
     case '/animal/cadastro':
-        AnimalController::Form();
+        AnimalController::List();
         break;
 
     case '/animal/cadastro/save':
         AnimalController::Save();
-        break;
-
-    case '/animal/listagem':
-        AnimalController::List();
         break;
 
     case '/animal/excluir':

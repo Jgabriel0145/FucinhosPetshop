@@ -39,29 +39,19 @@
 
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="/cliente/cadastro">
                             <i class='bx bx-user-plus icon'></i>
-                            <span class="text nav-text">Adicionar</span>
+                            <span class="text nav-text">Clientes</span>
                         </a>
                     </li>
-                    <div class="submenu">
-                    <div>
-                        <li class="nav-link sub-item">
-                            <a href="/cliente/cadastro">
-                                <i class='bx bx-user-plus icon' style="visibility: hidden;"></i>
-                                <span class="text nav-text">Cliente</span>
-                            </a>
-                        </li>
-                    </div>
-                    <div>
-                        <li class="nav-link sub-item">
-                            <a href="/animal/cadastro">
-                                <i class='bx bx-user-plus icon' style="visibility: hidden;"></i>
-                                <span class="text nav-text">Animal</span>
-                            </a>
-                        </li>
-                    </div>
-                    </div>
+
+                    <li class="nav-link">
+                        <a href="/animal/cadastro">
+                            <i class='bx bxs-dog icon'></i>
+                            <span class="text nav-text">Animais</span>
+                        </a>
+                    </li>
+
                     <li class="nav-link">
                         <a href="/produto/cadastro">
                             <i class='bx bxs-package icon'></i>

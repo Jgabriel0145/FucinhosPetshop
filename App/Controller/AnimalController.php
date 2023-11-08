@@ -37,7 +37,7 @@ class AnimalController extends Controller
 
         $model->Save();
 
-        header('Location: /animal/listagem');
+        header('Location: /animal/cadastro');
     }
 
     static public function List()
@@ -48,7 +48,7 @@ class AnimalController extends Controller
 
         $model->GetAllRows();
 
-        parent::render('Animal/AnimalListagem', $model);
+        parent::render('Animal/AnimalCadastro', $model);
     }
 
     static public function Delete()
@@ -57,6 +57,6 @@ class AnimalController extends Controller
         
         (new AnimalModel())->Delete((int) $_GET['id']);
 
-        header('Location: /animal/listagem');
+        header('Location: /animal/cadastro');
     }
 }

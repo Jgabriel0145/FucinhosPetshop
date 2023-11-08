@@ -8,9 +8,9 @@
   <title>Document</title>
 
   <?php
-  $models = $model;
-  $model_animal = $models[0];
-  $model_cliente = $models[1];
+  //$models = $model;
+  //$model_animal = $models[0];
+  //$model_cliente = $models[1];
   ?>
 
   <style>
@@ -28,19 +28,15 @@
     <button type="button" id="btn-cliente" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Adicionar animal</button>
 
 
-    <section class="box-table" id="list-cliente">
+    <section class="box-table" id="list-animal">
       <table class="table">
         <thead>
           <th>Excluir</th>
-          <th>Id</th>
           <th>Nome</th>
           <th>Raça</th>
           <th>Peso</th>
           <th>Porte</th>
-          <th>Cliente</th>
-          <th>Cpf</th>
-          <th>Telefone</th>
-          <th>Endereco</th>
+          <th>Dono</th>
         </thead>
 
         <tbody>
@@ -50,8 +46,6 @@
               <td>
                 <a href="/animal/excluir?id=<?= $item->id_animal ?>">X</a>
               </td>
-
-              <td><a><?= $item->id_animal ?></a></td>
 
               <td>
                 <a href="/animal/cadastro?id=<?= $item->id_animal ?>"><?= $item->nome_animal ?></a>
@@ -73,18 +67,6 @@
                 <a href="/animal/cadastro?id=<?= $item->id_animal ?>"><?= $item->nome_cliente ?></a>
               </td>
 
-              <td>
-                <a href="/animal/cadastro?id=<?= $item->id_animal ?>"><?= $item->cpf ?></a>
-              </td>
-
-              <td>
-                <a href="/animal/cadastro?id=<?= $item->id_animal ?>"><?= $item->telefone ?></a>
-              </td>
-
-              <td>
-                <a href="/animal/cadastro?id=<?= $item->id_animal ?>"><?= $item->endereco ?></a>
-              </td>
-            </tr>
 
 
           <?php endforeach ?>
