@@ -31,6 +31,7 @@ class VendaController extends Controller
         $models = [$model_venda, $model_cliente, $model_funcionario, $model_produto, $model_servico];
 
         parent::render('Venda/VendaCadastro', $models);
+        
     }
 
     static public function AddCarrinho()

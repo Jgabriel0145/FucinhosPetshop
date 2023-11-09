@@ -5,13 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <?php include "../App/Views/Includes/CssConfig.php" ?>
-  <title>Document</title>
+  <title>Animais</title>
 
-  <?php
+ <?php
   //$models = $model;
   //$model_animal = $models[0];
   //$model_cliente = $models[1];
-  ?>
+  ?> 
 
   <style>
     label {
@@ -92,7 +92,7 @@
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Cadastro de Clientes</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Cadastro de Animais</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
@@ -162,8 +162,8 @@
     </div>
 
 
-    <?php include "../App/Views/Includes/JsConfig.php" ?>
   </section>
+  <?php include "../App/Views/Includes/JsConfig.php" ?>
 </body>
 
 </html>

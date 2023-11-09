@@ -108,11 +108,15 @@ COLLATE = utf8mb4_0900_ai_ci;
 CREATE TABLE IF NOT EXISTS `db_petshop`.`servico` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `descricao` VARCHAR(50) NOT NULL,
-  `valor_servico` DOUBLE NOT NULL,
+  `valor_pequeno_porte` DOUBLE NOT NULL,
+  `valor_medio_porte` DOUBLE NOT NULL,
+  `valor_grande_porte` DOUBLE NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
+
 
 
 -- -----------------------------------------------------

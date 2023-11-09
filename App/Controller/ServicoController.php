@@ -6,7 +6,7 @@ use App\Model\ServicoModel;
 
 class ServicoController extends Controller
 {
-    static public function Form()
+    static public function FormAndList()
     {
         parent::IsAuthenticated();
 
@@ -16,6 +16,10 @@ class ServicoController extends Controller
         {
             $model = $model->SearchById((int) $_GET['id']);
         }
+
+        $model = new ServicoModel();
+        $model->GetAllRows();
+
                 
         parent::render('Servico/ServicoCadastro', $model);
     }
@@ -28,21 +32,13 @@ class ServicoController extends Controller
 
         $model->id = $_POST['id'];
         $model->descricao = $_POST['descricao_servico'];
-        $model->valor_servico = $_POST['valor_servico'];
+        $model->valor_pequeno_porte = $_POST['valor_pequeno_porte'];
+        $model->valor_medio_porte = $_POST['valor_medio_porte'];
+        $model->valor_grande_porte = $_POST['valor_grande_porte'];
 
         $model->Save();
 
-        header('Location: /servico/listagem');
-    }
-
-    static public function List()
-    {
-        parent::IsAuthenticated();
-
-        $model = new ServicoModel();
-        $model->GetAllRows();
-
-        parent::render('Servico/ServicoListagem', $model);
+        header('Location: /servico/cadastro');
     }
 
     static public function Delete()

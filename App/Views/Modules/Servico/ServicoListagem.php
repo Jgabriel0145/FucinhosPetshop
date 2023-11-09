@@ -4,19 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listagem de Serviços</title>
-    <?php //include "../App/Views/Includes/CssConfig.php" ?>
+    <?php include "../App/Views/Includes/CssConfig.php" ?>
 
 </head>
 <body>
       
     <?php include "../App/Views/Includes/Navbar/navbar.php" ?>
-
-    <table>
+<section class="home">
+    <table class="table">
         <thead>
-            <th>Excluir</th>
-            <th>Id</th>
-            <th>Descrição</th>
-            <th>Valor do Serviço</th>
+            <th  scope="col">Excluir</th>
+            <th  scope="col">Descrição</th>
+            <th  scope="col">Valor do Serviço</th>
         </thead>
 
         <tbody>
@@ -26,8 +25,6 @@
                     <td>
                         <a href="/servico/excluir?id=<?= $item->id ?>">X</a>
                     </td>
-
-                    <td><a><?= $item->id ?></a></td>
 
                     <td>
                         <a href="/servico/cadastro?id=<?= $item->id ?>"><?= $item->descricao ?></a>
@@ -52,6 +49,6 @@
             <?php endif ?>
         </tbody>
     </table>
-  
+</section>
 </body>
 </html>

@@ -19,6 +19,10 @@ class AnimalController extends Controller
 
         $models = [$model_animal, $model_cliente];
 
+        $model = new AnimalModel();
+
+        $model->GetAllRows();
+
         parent::render('Animal/AnimalCadastro', $models);
     }
 

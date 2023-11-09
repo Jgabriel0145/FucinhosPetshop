@@ -86,7 +86,7 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Cadastro de Clientes</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Cadastro de Proutos</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -94,17 +94,17 @@
                             <input type="hidden" name="id" value="<?= $model->id ?>">
                             <div class="mb-3">
                                 <label for="descricao_produto" class="form-label">Descrição</label>
-                                <input class="form-control" type="text" name="descricao_produto" placeholder="descricao" value="<?= $model->descricao ?>">
+                                <input class="form-control" type="text" name="descricao_produto" value="<?= $model->descricao ?>">
                             </div>
                             <div class="mb-3">
                                 <div class="row">
                                     <div class="col">
                                         <label for="preco_produto" class="form-label">Preço</label>
-                                        <input class="form-control" type="number" name="preco_produto" placeholder="preco" value="<?= $model->preco ?>">
+                                        <input class="form-control" type="number" name="preco_produto" value="<?= $model->preco ?>">
                                     </div>
                                     <div class="col">
                                         <label for="estoque_produto" class="form-label">Quantidade em estoque</label>
-                                        <input class="form-control" type="number" name="estoque_produto" placeholder="estoque" value="<?= $model->estoque ?>">
+                                        <input class="form-control" type="number" name="estoque_produto" value="<?= $model->estoque ?>">
                                     </div>
                                 </div>
                             </div>

@@ -14,25 +14,29 @@ class ServicoDAO extends DAO
 
     public function Insert(ServicoModel $model)
     {
-        $sql = 'INSERT INTO servico (descricao, valor_servico) VALUES (?, ?);';
+        $sql = 'INSERT INTO servico (descricao, valor_pequeno_porte, valor_medio_porte, valor_grande_porte) VALUES (?, ?, ?, ?);';
 
         $stmt = $this->conexao->prepare($sql);
         
         $stmt->bindValue(1, $model->descricao);
-        $stmt->bindValue(2, $model->valor_servico);
+        $stmt->bindValue(2, $model->valor_pequeno_porte);
+        $stmt->bindValue(3, $model->valor_medio_porte);
+        $stmt->bindValue(4, $model->valor_grande_porte);
 
         $stmt->execute();
     }
 
     public function Update(ServicoModel $model)
     {
-        $sql = 'UPDATE servico SET descricao = ?, valor_servico = ? WHERE id = ?';
+        $sql = 'UPDATE servico SET descricao = ?, valor_pequeno_porte = ?, valor_medio_porte = ?, valor_grande_porte = ? WHERE id = ?';
 
         $stmt = $this->conexao->prepare($sql);
 
         $stmt->bindValue(1, $model->descricao);
-        $stmt->bindValue(2, $model->valor_servico);
-        $stmt->bindValue(3, $model->id);
+        $stmt->bindValue(2, $model->valor_pequeno_porte);
+        $stmt->bindValue(3, $model->valor_medio_porte);
+        $stmt->bindValue(4, $model->valor_grande_porte);
+        $stmt->bindValue(5, $model->id);
 
         $stmt->execute();
     }

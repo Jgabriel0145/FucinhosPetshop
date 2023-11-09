@@ -89,16 +89,13 @@ switch ($url)
 
     //Servico
     case '/servico/cadastro':
-        ServicoController::Form();
+        ServicoController::FormAndList();
         break;
 
     case '/servico/cadastro/save':
         ServicoController::Save();
         break;
 
-    case '/servico/listagem':
-        ServicoController::List();
-        break;
 
     case '/servico/excluir':
         ServicoController::Delete();
