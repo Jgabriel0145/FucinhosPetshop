@@ -7,10 +7,9 @@
   <?php include "../App/Views/Includes/CssConfig.php" ?>
   <title>Animais</title>
 
- <?php
-  //$models = $model;
-  //$model_animal = $models[0];
-  //$model_cliente = $models[1];
+  <?php
+    $model_animal = $model[0];
+    $model_cliente = $model[1];
   ?> 
 
   <style>
@@ -21,7 +20,6 @@
 </head>
 
 <body>
-
   <?php include "../App/Views/Includes/Navbar/navbar.php" ?>
   <section class="home">
     <div class="text">Animais</div>
@@ -40,7 +38,7 @@
         </thead>
 
         <tbody>
-          <?php foreach ($model->rows as $item) : ?>
+          <?php foreach ($model_animal->rows as $item) : ?>
 
             <tr>
               <td>
@@ -64,7 +62,7 @@
               </td>
 
               <td>
-                <a href="/animal/cadastro?id=<?= $item->id_animal ?>"><?= $item->nome_cliente ?></a>
+                <a href="/animal/cadastro?id=<?= $item->cliente ?>"><?= $item->nome_cliente ?></a>
               </td>
 
 
@@ -72,7 +70,7 @@
           <?php endforeach ?>
 
 
-          <?php if (count($model->rows) == 0) : ?>
+          <?php if (count($model_animal->rows) == 0) : ?>
             <tr>
               <td colspan="6">
                 Nenhum registro encontrado

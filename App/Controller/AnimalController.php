@@ -15,13 +15,9 @@ class AnimalController extends Controller
 
         if (isset($_GET['id'])) $model_animal = $model_animal->SearchById((int) $_GET['id']);
 
-        $model_cliente->rows = $model_cliente->GetAllRows();
+        $model_cliente->GetAllRows();
 
         $models = [$model_animal, $model_cliente];
-
-        $model = new AnimalModel();
-
-        $model->GetAllRows();
 
         parent::render('Animal/AnimalCadastro', $models);
     }
@@ -48,11 +44,15 @@ class AnimalController extends Controller
     {
         parent::IsAuthenticated();
 
-        $model = new AnimalModel();
+        $model_animal = new AnimalModel();
+        $model_animal->GetAllRows();
 
-        $model->GetAllRows();
+        $model_cliente = new ClienteModel();
+        $model_cliente->GetAllRows();
 
-        parent::render('Animal/AnimalCadastro', $model);
+        $models = [$model_animal, $model_cliente];
+
+        parent::render('Animal/AnimalCadastro', $models);
     }
 
     static public function Delete()
