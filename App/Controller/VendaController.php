@@ -44,7 +44,8 @@ class VendaController extends Controller
         $model->id_produto_carrinho = ($_POST['id_produto'] == 'nenhum') ? null : $_POST['id_produto'];
         
         $model->quantidade_servico_carrinho = ($model->id_servico_carrinho == null) ? 0 : $_POST['quantidade_servico'];
-        $model->quantidade_produto_carrinho = ($model->id_produto_carrinho == null) ? 0 : $_POST['quantidade_produto']; 
+        $model->quantidade_produto_carrinho = ($model->id_produto_carrinho == null) ? 0 : $_POST['quantidade_produto'];
+        $model->porte_animal = ($_POST['porte_animal'] == 'nenhum') ? null : $_POST['porte_animal'];
 
         $model->AddCarrinho();
 

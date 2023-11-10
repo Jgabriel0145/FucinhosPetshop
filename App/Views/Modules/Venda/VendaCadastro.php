@@ -78,7 +78,19 @@
         <?php endif ?>
       </select>
 
-      <input type="number" name="quantidade_servico" class="id_produto_servico" id="quantidade_servico" placeholder="Quantidade Serviço">
+      <label for="porte_animal" id="lbl_porte_animal" class="id_produto_servico">Porte do animal</label>
+      <select name="porte_animal" id="porte_animal" class="id_produto_servico">
+        <option value="nenhum">Nenhum</option>
+        <option value="P">Pequeno</option>
+        <option value="M">Médio</option>
+        <option value="G">Grande</option>
+      </select>
+
+      <br>
+
+      <input type="number" name="quantidade_servico" id="quantidade_servico" class="id_produto_servico">
+
+      <br>
 
       <script>
         const produto = document.getElementById('id_produto');
@@ -89,6 +101,9 @@
 
         const lbl_produto = document.getElementById('lbl_produto');
         const lbl_servico = document.getElementById('lbl_servico');
+        const lbl_porte_animal = document.getElementById('lbl_porte_animal');
+
+        const porte_animal = document.getElementById('porte_animal');
 
         function EsconderElementos() {
           const tipoVenda = document.getElementById('tipo_venda').value;
@@ -101,15 +116,21 @@
 
             lbl_produto.style.visibility = 'visible';
             lbl_servico.style.visibility = 'hidden';
+            lbl_porte_animal.style.visibility = 'hidden';
+
+            porte_animal.style.visibility = 'hidden';
           } else if (tipoVenda === "S") {
             produto.style.visibility = 'hidden';
             servico.style.visibility = 'visible';
 
             qtd_produto.style.visibility = 'hidden';
             qtd_servico.style.visibility = 'visible';
+            lbl_porte_animal.style.visibility = 'visible';
 
             lbl_produto.style.visibility = 'hidden';
             lbl_servico.style.visibility = 'visible';
+
+            porte_animal.style.visibility = 'visible';
           } else {
             produto.style.visibility = 'hidden';
             servico.style.visibility = 'hidden';
@@ -119,6 +140,9 @@
 
             lbl_produto.style.visibility = 'hidden';
             lbl_servico.style.visibility = 'hidden';
+            lbl_porte_animal.style.visibility = 'hidden';
+
+            porte_animal.style.visibility = 'hidden';
           }
         }
       </script>

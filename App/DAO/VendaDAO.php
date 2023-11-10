@@ -132,18 +132,19 @@ class VendaDAO extends DAO
 
     public function AddCarrinho(VendaModel $model)
     {
-        $sql = 'INSERT INTO carrinho_temporario (id_servico, tipo_venda, quantidade_servico, valor_un_servico, id_produto, quantidade_produto, valor_un_produto, valor_total) VALUES (?, ?, ?, ?, ?, ?, ?, ?);';
+        $sql = 'INSERT INTO carrinho_temporario (id_servico, tipo_venda, porte_animal, quantidade_servico, valor_servico, id_produto, quantidade_produto, valor_un_produto, valor_total) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);';
     
         $stmt = $this->conexao->prepare($sql);
 
         $stmt->bindValue(1, $model->id_servico_carrinho);
         $stmt->bindValue(2, $model->tipo_venda_carrinho);
-        $stmt->bindValue(3, $model->quantidade_servico_carrinho);
-        $stmt->bindValue(4, $model->valor_un_servico_carrinho);
-        $stmt->bindValue(5, $model->id_produto_carrinho);
-        $stmt->bindValue(6, $model->quantidade_produto_carrinho);
-        $stmt->bindValue(7, $model->valor_un_produto_carrinho);
-        $stmt->bindValue(8, $model->valor_total_carrinho);
+        $stmt->bindValue(3, $model->porte_animal);
+        $stmt->bindValue(4, $model->quantidade_servico_carrinho);
+        $stmt->bindValue(5, $model->valor_servico_carrinho);
+        $stmt->bindValue(6, $model->id_produto_carrinho);
+        $stmt->bindValue(7, $model->quantidade_produto_carrinho);
+        $stmt->bindValue(8, $model->valor_un_produto_carrinho);
+        $stmt->bindValue(9, $model->valor_total_carrinho);
 
         $stmt->execute();
     }

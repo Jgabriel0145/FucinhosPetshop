@@ -60,8 +60,9 @@ CREATE TABLE IF NOT EXISTS `db_petshop`.`carrinho_temporario` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `tipo_venda` ENUM('P', 'S') NULL DEFAULT NULL,
   `id_servico` INT NULL DEFAULT NULL,
+  `porte_animal` ENUM('P', 'M', 'G') NULL DEFAULT NULL,
   `quantidade_servico` INT NULL DEFAULT NULL,
-  `valor_un_servico` DOUBLE NULL DEFAULT NULL,
+  `valor_servico` DOUBLE NULL DEFAULT NULL,
   `id_produto` INT NULL DEFAULT NULL,
   `quantidade_produto` INT NULL DEFAULT NULL,
   `valor_un_produto` DOUBLE NULL DEFAULT NULL,
@@ -171,6 +172,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 CREATE TABLE IF NOT EXISTS `db_petshop`.`venda_itens_servico` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_servico` INT NULL DEFAULT NULL,
+  `porte_animal` ENUM('P', 'M', 'G') NULL DEFAULT NULL,
   `quantidade_servico` INT NULL DEFAULT NULL,
   `valor_total` DOUBLE NULL DEFAULT NULL,
   `id_venda` INT NULL DEFAULT NULL,
