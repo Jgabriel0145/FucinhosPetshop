@@ -108,7 +108,6 @@ class VendaController extends Controller
             $carrinho['total'] += $item->valor_total;
         }
 
-
         $model->id_cliente = $_POST['id_cliente'];
         $model->id_funcionario = $_POST['id_funcionario'];
         $model->valor_total_venda = $carrinho['total'];

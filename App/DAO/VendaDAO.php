@@ -47,14 +47,15 @@ class VendaDAO extends DAO
         {
             foreach ($carrinho['servicos'] as $item)
             {
-                $sql = 'INSERT INTO venda_itens_servico (id_servico, quantidade_servico, valor_total, id_venda) VALUES (?, ?, ?, ?)';
+                $sql = 'INSERT INTO venda_itens_servico (id_servico, porte_animal, quantidade_servico, valor_total, id_venda) VALUES (?, ?, ?, ?, ?)';
 
                 $stmt = $this->conexao->prepare($sql);
 
-                $stmt->bindValue(1, $item[5]);
+                $stmt->bindValue(1, $item[6]);
                 $stmt->bindValue(2, $item[2]);
-                $stmt->bindValue(3, $item[4]);
-                $stmt->bindValue(4, $id_inserido);
+                $stmt->bindValue(3, $item[5]);
+                $stmt->bindValue(4, $item[0]);
+                $stmt->bindValue(5, $id_inserido);
 
                 $stmt->execute();
             }
