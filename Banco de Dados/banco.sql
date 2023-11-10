@@ -113,7 +113,7 @@ CREATE TABLE IF NOT EXISTS `db_petshop`.`servico` (
   `valor_grande_porte` DOUBLE NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 2
+AUTO_INCREMENT = 0
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
