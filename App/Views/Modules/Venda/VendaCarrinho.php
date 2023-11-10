@@ -70,6 +70,7 @@
             <th>Excluir</th>
             <th>Id</th>
             <th>Serviço</th>
+            <th>Porte do Animal</th>
             <th>Quantidade de Serviço</th>
             <th>Valor do Serviço</th>
             <th>Valor Total</th>
@@ -93,11 +94,15 @@
                     </td>
 
                     <td>
-                        <a href="">R$ <?= number_format($servicos[3], 2, ',', '.') ?></a>
+                        <a href=""><?= $servicos[3] ?></a>
                     </td>
 
                     <td>
                         <a href="">R$ <?= number_format($servicos[4], 2, ',', '.') ?></a>
+                    </td>
+
+                    <td>
+                        <a href="">R$ <?= number_format($servicos[5], 2, ',', '.') ?></a>
                     </td>
                 </tr>
             

@@ -69,7 +69,7 @@ class VendaController extends Controller
 
         foreach ($model->rows[1] as $item)
         {
-            array_push($carrinho['servicos'], [$item->id, $item->servico, $item->quantidade_servico, $item->valor_un_servico, $item->valor_total, $item->servico_id]);
+            array_push($carrinho['servicos'], [$item->id, $item->servico, $item->porte_animal ,$item->quantidade_servico, $item->valor_servico, $item->valor_total, $item->servico_id]);
             $carrinho['total'] += $item->valor_total;
         }
 
@@ -104,7 +104,7 @@ class VendaController extends Controller
 
         foreach ($model->rows[1] as $item)
         {
-            array_push($carrinho['servicos'], [$item->id, $item->servico, $item->quantidade_servico, $item->valor_un_servico, $item->valor_total, $item->servico_id]);
+            array_push($carrinho['servicos'], [$item->id, $item->servico, $item->porte_animal, $item->quantidade_servico, $item->valor_servico, $item->valor_total, $item->servico_id]);
             $carrinho['total'] += $item->valor_total;
         }
 

@@ -161,7 +161,7 @@ class VendaDAO extends DAO
 
         $produtos_carrinho = $stmt->fetchAll(DAO::FETCH_CLASS);
 
-        $sql_s = 'SELECT c.id, c.tipo_venda, c.quantidade_servico, c.valor_un_servico, c.valor_total,s.id AS servico_id, s.descricao AS servico FROM carrinho_temporario c 
+        $sql_s = 'SELECT c.id, c.tipo_venda, c.porte_animal, c.quantidade_servico, c.valor_servico, c.valor_total,s.id AS servico_id, s.descricao AS servico FROM carrinho_temporario c 
         JOIN servico s ON (c.id_servico = s.id)
         WHERE c.tipo_venda = "S"';
 
