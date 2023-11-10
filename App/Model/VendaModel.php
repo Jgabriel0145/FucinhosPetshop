@@ -12,7 +12,8 @@ class VendaModel extends Model
     //carrinho
     public $id_carrinho, $tipo_venda_carrinho, $id_servico_carrinho, $id_produto_carrinho;
     public $quantidade_produto_carrinho, $quantidade_servico_carrinho;
-    public $valor_un_produto_carrinho, $valor_un_servico_carrinho, $valor_total_carrinho;
+    public $valor_un_produto_carrinho, $valor_servico_carrinho, $valor_total_carrinho;
+    public $porte_animal;
 
     public function Save($carrinho, VendaModel $model)
     {
@@ -53,13 +54,17 @@ class VendaModel extends Model
         if ($this->id_servico_carrinho != null)
         {
             $servico = $servico->SearchById($this->id_servico_carrinho);
-            $this->valor_un_servico_carrinho = $servico->valor_servico;
+            if ($this->porte_animal == 'P')
+                $this->valor_servico_carrinho = $servico->valor_pequeno_porte;
+            else if ($this->porte_animal == 'M')
+                $this->valor_servico_carrinho = $servico->valor_medio_porte;
+            elseif ($this->porte_animal == 'G')
+                $this->valor_servico_carrinho = $servico->valor_grande_porte;
         }
             
         else $servico->valor_servico = 0;
 
-
-        $this->valor_total_carrinho = ($this->valor_un_produto_carrinho * $this->quantidade_produto_carrinho) + ($this->valor_un_servico_carrinho * $this->quantidade_servico_carrinho);
+        $this->valor_total_carrinho = ($this->valor_un_produto_carrinho * $this->quantidade_produto_carrinho) + ($this->valor_servico_carrinho * $this->quantidade_servico_carrinho);
 
         (new VendaDAO())->AddCarrinho($this);
     }
