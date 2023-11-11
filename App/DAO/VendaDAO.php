@@ -122,12 +122,19 @@ class VendaDAO extends DAO
 
     public function Delete($id)
     {
-        $sql = 'DELETE FROM venda WHERE id = ?';
-
+        $sql = 'DELETE FROM venda_itens_servico WHERE id_venda = ?;';
         $stmt = $this->conexao->prepare($sql);
-
         $stmt->bindValue(1, $id);
+        $stmt->execute();
 
+        $sql = 'DELETE FROM venda_itens_produto WHERE id_venda = ?;';
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->bindValue(1, $id);
+        $stmt->execute();
+
+        $sql = 'DELETE FROM venda WHERE id = ?;';
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->bindValue(1, $id);
         $stmt->execute();
     }
 
@@ -179,7 +186,13 @@ class VendaDAO extends DAO
 
     public function DeleteCarrinho($id)
     {
+        $sql = 'DELETE FROM carrinho_temporario WHERE id = ?';
+        
+        $stmt = $this->conexao->prepare($sql);
 
+        $stmt->bindValue(1, $id);
+        
+        $stmt->execute();
     }
 
     public function LimparCarrinho()

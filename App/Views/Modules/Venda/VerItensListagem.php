@@ -20,30 +20,30 @@
         <tbody>
             <?php foreach($model['produtos'] as $produtos): ?>
                 <tr>
-                    <td><a><?= $produtos[1] ?></a></td>
+                    <td><?= $produtos[1] ?></td>
 
                     <td>
-                        <a href=""><?= $produtos[2] ?></a>
+                        <?= $produtos[2] ?>
                     </td>
 
                     <td>
-                        <a href=""><?= $produtos[3] ?></a>
+                        <?= $produtos[3] ?>
                     </td>
 
                     <td>
-                        <a href="">R$ <?= number_format($produtos[4], 2, ',', '.') ?></a>
+                        R$ <?= number_format($produtos[4], 2, ',', '.') ?>
                     </td>
 
                     <td>
-                        <a href=""><?= $produtos[5] ?></a>
+                        <?= $produtos[5] ?>
                     </td>
 
                     <td>
-                        <a href=""><?= $produtos[6] ?></a>
+                        <?= $produtos[6] ?>
                     </td>
 
                     <td>
-                        <a href=""><?= $produtos[7] ?></a>
+                        <?= $produtos[7] ?>
                     </td>
                 </tr>
             
@@ -78,30 +78,30 @@
         <tbody>
             <?php foreach($model['servicos'] as $servicos): ?>
                 <tr>
-                    <td><a><?= $servicos[1] ?></a></td>
+                    <td><?= $servicos[1] ?></td>
 
                     <td>
-                        <a href=""><?= $servicos[2] ?></a>
+                        <?= $servicos[2] ?>
                     </td>
 
                     <td>
-                        <a href=""><?= $servicos[3] ?></a>
+                        <?= $servicos[3] ?>
                     </td>
 
                     <td>
-                        <a href=""><?= $servicos[4] ?></a>
+                        <?= $servicos[4] ?>
                     </td>
 
                     <td>
-                        <a href="">R$ <?= number_format($servicos[5], 2, ',', '.') ?></a>
+                        R$ <?= number_format($servicos[5], 2, ',', '.') ?>
                     </td>
 
                     <td>
-                        <a href=""><?= $servicos[6] ?></a>
+                        <?= $servicos[6] ?>
                     </td>
 
                     <td>
-                        <a href=""><?= $servicos[7] ?></a>
+                        <?= $servicos[7] ?>
                     </td>
                 </tr>
             
@@ -120,7 +120,7 @@
     </table>
 
     <br><br>
-    TOTAL: R$ <?= $model['total'] ?>
+    TOTAL: R$ <?= number_format($model['total'], 2, ',', '.') ?>
     <br><br>
     <button onclick="document.location='/venda/listagem'">Voltar</button>
 </body>

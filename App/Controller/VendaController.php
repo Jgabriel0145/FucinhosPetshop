@@ -158,6 +158,17 @@ class VendaController extends Controller
     {
         parent::IsAuthenticated();
 
+        (new VendaModel())->Delete((int) $_GET['id']);
 
+        header('Location: /venda/listagem');
+    }
+
+    static public function DeleteCarrinho()
+    {
+        parent::IsAuthenticated();
+
+        (new VendaModel())->DeleteCarrinho((int) $_GET['id']);
+
+        header('Location: /venda/cadastro/carrinho/ver');
     }
 }

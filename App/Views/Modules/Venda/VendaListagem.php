@@ -26,31 +26,33 @@
             <?php foreach($model->rows as $item): ?>
                 <tr>
                     <td>
-                        <a href="">X</a>
-                    </td>
-
-                    <td><a><?= $item->numero_venda ?></a></td>
-
-                    <td>
-                        <a href="">R$ <?= number_format($item->total_venda, 2, ',', '.') ?></a>
+                        <a href="/venda/excluir?id=<?= $item->id ?>">X</a>
                     </td>
 
                     <td>
-                        <a href=""><?= $item->cliente ?></a>
+                        <?= $item->numero_venda ?>
                     </td>
 
                     <td>
-                        <a href=""><?= $item->funcionario ?></a>
+                        R$ <?= number_format($item->total_venda, 2, ',', '.') ?>
                     </td>
 
                     <td>
-                        <a href=""><?= $item->data_venda ?></a>
+                        <?= $item->cliente ?>
+                    </td>
+
+                    <td>
+                        <?= $item->funcionario ?>
+                    </td>
+
+                    <td>
+                        <?= $item->data_venda ?>
                     </td>
 
                     <td>
                         <form action="/venda/listagem/veritens" method="post">
-                          <input type="hidden" name="id_procurar_itens" value="<?= $item->id ?>">
-                          <button type="submit">Ver Itens</button>
+                            <input type="hidden" name="id_procurar_itens" value="<?= $item->id ?>">
+                            <button type="submit">Ver Itens</button>
                         </form>
                     </td>
                 </tr>
