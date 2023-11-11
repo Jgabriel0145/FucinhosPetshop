@@ -20,4 +20,10 @@ abstract class Controller
         if (!isset($_SESSION['dados_usuario']))
             header('Location: /funcionario/login');
     }
+
+    protected static function IsAdmin()
+    {
+        if ($_SESSION['dados_usuario']['admin'] == 0)
+            header('Location: /inicio');
+    }
 }

@@ -147,7 +147,7 @@ class VendaController extends Controller
 
         foreach ($model->rows['servicos'] as $item)
         {
-            array_push($listagem['servicos'], [$item->id, $item->numero_venda, $item->servico, $item->quantidade_servico, $item->valor_total_servico, $item->cliente, $item->funcionario, $item->data_venda]); 
+            array_push($listagem['servicos'], [$item->id, $item->numero_venda, $item->servico, $item->porte_animal, $item->quantidade_servico, $item->valor_total_servico, $item->cliente, $item->funcionario, $item->data_venda]); 
             $listagem['total'] += $item->valor_total_servico;
         }
 

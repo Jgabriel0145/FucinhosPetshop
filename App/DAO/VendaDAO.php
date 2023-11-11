@@ -53,8 +53,8 @@ class VendaDAO extends DAO
 
                 $stmt->bindValue(1, $item[6]);
                 $stmt->bindValue(2, $item[2]);
-                $stmt->bindValue(3, $item[5]);
-                $stmt->bindValue(4, $item[0]);
+                $stmt->bindValue(3, $item[3]);
+                $stmt->bindValue(4, $item[5]);
                 $stmt->bindValue(5, $id_inserido);
 
                 $stmt->execute();
@@ -96,13 +96,13 @@ class VendaDAO extends DAO
         $listagem['produtos'] = $stmt->fetchAll(DAO::FETCH_CLASS);
 
         //Serviços
-        $sql = 'SELECT v.id, v.id AS numero_venda, s.descricao AS servico, vs.quantidade_servico, vs.valor_total AS valor_total_servico,
-                c.nome AS cliente, f.nome AS funcionario, v.data_venda FROM venda_itens_servico vs
-                JOIN venda v ON (vs.id_venda = v.id)
-                JOIN servico s ON (vs.id_servico = s.id)
-                JOIN cliente c ON (v.id_cliente = c.id)
-                JOIN funcionario f ON (v.id_funcionario = f.id)
-                WHERE v.id = ?;';
+        $sql = 'SELECT v.id, v.id AS numero_venda, s.descricao AS servico, vs.porte_animal, vs.quantidade_servico, vs.valor_total AS valor_total_servico,
+                    c.nome AS cliente, f.nome AS funcionario, v.data_venda FROM venda_itens_servico vs
+                    JOIN venda v ON (vs.id_venda = v.id)
+                    JOIN servico s ON (vs.id_servico = s.id)
+                    JOIN cliente c ON (v.id_cliente = c.id)
+                    JOIN funcionario f ON (v.id_funcionario = f.id)
+                    WHERE v.id = ?;';
 
         $stmt = $this->conexao->prepare($sql);
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fucinhu's Petshop</title>
+    <title>Fucinho's Petshop</title>
 
     <?php include "../App/Views/Includes/CssConfig.php" ?>
 
