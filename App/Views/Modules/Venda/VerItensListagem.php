@@ -67,6 +67,7 @@
         <thead>
             <th>Número da Venda</th>
             <th>Serviço</th>
+            <th>Porte do Animal</th>
             <th>Quantidade de Serviço</th>
             <th>Total</th>
             <th>Cliente</th>
@@ -88,11 +89,11 @@
                     </td>
 
                     <td>
-                        <a href="">R$ <?= number_format($servicos[4], 2, ',', '.') ?></a>
+                        <a href=""><?= $servicos[4] ?></a>
                     </td>
 
                     <td>
-                        <a href=""><?= $servicos[5] ?></a>
+                        <a href="">R$ <?= number_format($servicos[5], 2, ',', '.') ?></a>
                     </td>
 
                     <td>
