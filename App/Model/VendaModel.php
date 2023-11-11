@@ -69,6 +69,11 @@ class VendaModel extends Model
         (new VendaDAO())->AddCarrinho($this);
     }
 
+    public function DeleteCarrinho($id)
+    {
+        (new VendaDAO())->DeleteCarrinho($id);
+    }
+
     public function LimparCarrinho()
     {
         (new VendaDAO())->LimparCarrinho();

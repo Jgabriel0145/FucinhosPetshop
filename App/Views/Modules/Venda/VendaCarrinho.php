@@ -27,25 +27,27 @@
             <?php foreach($model_venda['produtos'] as $produtos): ?>
                 <tr>
                     <td>
-                        <a href="">X</a>
-                    </td>
-
-                    <td><a><?= $produtos[0] ?></a></td>
-
-                    <td>
-                        <a href=""><?= $produtos[1] ?></a>
+                        <a href="/venda/cadastro/carrinho/ver/excluir?id=<?= $produtos[0] ?>">X</a>
                     </td>
 
                     <td>
-                        <a href=""><?= $produtos[2] ?></a>
+                        <?= $produtos[0] ?>
                     </td>
 
                     <td>
-                        <a href="">R$ <?= number_format($produtos[3], 2, ',', '.') ?></a>
+                        <?= $produtos[1] ?>
                     </td>
 
                     <td>
-                        <a href="">R$ <?= number_format($produtos[4], 2, ',', '.') ?></a>
+                        <?= $produtos[2] ?>
+                    </td>
+
+                    <td>
+                        R$ <?= number_format($produtos[3], 2, ',', '.') ?>
+                    </td>
+
+                    <td>
+                        R$ <?= number_format($produtos[4], 2, ',', '.') ?>
                     </td>
                 </tr>
             
@@ -80,29 +82,31 @@
             <?php foreach($model_venda['servicos'] as $servicos): ?>
                 <tr>
                     <td>
-                        <a href="">X</a>
-                    </td>
-
-                    <td><a><?= $servicos[0] ?></a></td>
-
-                    <td>
-                        <a href=""><?= $servicos[1] ?></a>
+                        <a href="/venda/cadastro/carrinho/ver/excluir?id=<?= $servicos[0] ?>">X</a>
                     </td>
 
                     <td>
-                        <a href=""><?= $servicos[2] ?></a>
+                        <?= $servicos[0] ?>
                     </td>
 
                     <td>
-                        <a href=""><?= $servicos[3] ?></a>
+                        <?= $servicos[1] ?>
                     </td>
 
                     <td>
-                        <a href="">R$ <?= number_format($servicos[4], 2, ',', '.') ?></a>
+                        <?= $servicos[2] ?>
                     </td>
 
                     <td>
-                        <a href="">R$ <?= number_format($servicos[5], 2, ',', '.') ?></a>
+                        <?= $servicos[3] ?>
+                    </td>
+
+                    <td>
+                        R$ <?= number_format($servicos[4], 2, ',', '.') ?>
+                    </td>
+
+                    <td>
+                        R$ <?= number_format($servicos[5], 2, ',', '.') ?>
                     </td>
                 </tr>
             
@@ -122,7 +126,7 @@
 
     <br><br>
 
-    <h2>Valor Total da Compra: R$ <?= number_format($model_venda['total'], 2, ',', '.') ?>;</h2>
+    <h2>Valor Total da Compra: R$ <?= number_format($model_venda['total'], 2, ',', '.') ?></h2>
 
     <br><br>
 
@@ -135,7 +139,7 @@
                     <option value="<?= $cliente->id ?>"><?= $cliente->nome ?></option>
                 <?php endforeach ?>
             <?php else: ?>
-                <option>Cadastre o cliente...</option>
+                <option disabled>Cadastre o cliente...</option>
             <?php endif ?>
         </select>
 
@@ -149,7 +153,7 @@
                     <option value="<?= $funcionario->id ?>"><?= $funcionario->nome ?></option>
                 <?php endforeach ?>
             <?php else: ?>
-                <option>Cadastre o funcionário...</option>
+                <option disabled>Cadastre o funcionário...</option>
             <?php endif ?>
         </select>
 

@@ -119,6 +119,10 @@ switch ($url)
         VendaController::Save();
         break;
 
+    case '/venda/cadastro/carrinho/ver/excluir':
+        VendaController::DeleteCarrinho();
+        break;
+
     case '/venda/listagem':
         VendaController::List();
         break;
