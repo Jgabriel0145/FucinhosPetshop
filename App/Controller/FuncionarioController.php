@@ -9,6 +9,7 @@ class FuncionarioController extends Controller
     static public function Form()
     {
         parent::IsAuthenticated();
+        parent::IsAdmin();
 
         $model = new FuncionarioModel();
 
@@ -20,7 +21,8 @@ class FuncionarioController extends Controller
     static public function Save()
     {
         parent::IsAuthenticated();
-
+        parent::IsAdmin();
+        
         $model = new FuncionarioModel();
 
         $model->id = $_POST['id'];
@@ -42,6 +44,7 @@ class FuncionarioController extends Controller
     static public function List()
     {
         parent::IsAuthenticated();
+        parent::IsAdmin();
 
         $model = new FuncionarioModel();
 
@@ -53,6 +56,7 @@ class FuncionarioController extends Controller
     static public function Delete()
     {
         parent::IsAuthenticated();
+        parent::IsAdmin();
 
         (new FuncionarioModel())->Delete((int) $_GET['id']);
 
@@ -96,7 +100,7 @@ class FuncionarioController extends Controller
 
     static public function Logout()
     {
-        unset($_SESSION['usuario']);
+        unset($_SESSION['dados_usuario']);
         
         parent::IsAuthenticated();
     }

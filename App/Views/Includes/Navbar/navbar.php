@@ -73,12 +73,21 @@
                         </a>
                     </li>
 
+                    <?php if ($_SESSION['dados_usuario']['admin'] == 1):?>
+                        <li class="nav-link">
+                            <a href="/funcionario/cadastro">
+                                <i class='bi bi-briefcase-fill icon'></i>
+                                <span class="text nav-text">Funcionários</span>
+                            </a>
+                        </li>
+                    <?php endif ?>
+
                 </ul>
             </div>
 
             <div class="bottom-content">
                 <li class="">
-                    <a href="/funcionario/login">
+                    <a href="/funcionario/login/logout">
                         <i class='bx bx-log-out icon'></i>
                         <span class="text nav-text">Sair</span>
                     </a>
