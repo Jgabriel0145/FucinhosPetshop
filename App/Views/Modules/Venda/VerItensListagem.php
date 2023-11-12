@@ -77,6 +77,12 @@
 
         <tbody>
             <?php foreach($model['servicos'] as $servicos): ?>
+                <?php
+                    if ($servicos[3] == 'P') $servicos[3] = 'Pequeno';
+                    else if ($servicos[3] == 'M') $servicos[3] = 'Médio';
+                    else if ($servicos[3] == 'G') $servicos[3] = 'Grande';
+                ?>
+
                 <tr>
                     <td><?= $servicos[1] ?></td>
 
@@ -102,6 +108,10 @@
 
                     <td>
                         <?= $servicos[7] ?>
+                    </td>
+
+                    <td>
+                        <?= $servicos[8] ?>
                     </td>
                 </tr>
             

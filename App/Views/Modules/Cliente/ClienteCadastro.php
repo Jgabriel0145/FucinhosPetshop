@@ -16,6 +16,7 @@
 
         .table {
             width: 60%;
+            margin-left: 20%;
         }
 
         a {
@@ -40,6 +41,7 @@
             <table class="table">
                 <thead>
                     <tr>
+                        <th scope="col">Excluir</th>
                         <th scope="col">Nome</th>
                         <th scope="col">CPF</th>
                         <th scope="col">Telefone</th>
@@ -52,25 +54,28 @@
                     <?php foreach ($model->rows as $item) : ?>
 
                         <tr>
-
                             <td>
-                                <a href="/cliente/cadastro?id=<?= $item->id ?>"><?= $item->nome ?></a>
+                                <a href="/cliente/excluir?id=<?= $item->id ?>">X</a>
                             </td>
 
                             <td>
-                                <a href="/cliente/cadastro?id=<?= $item->id ?>"><?= $item->cpf ?></a>
+                                <?= $item->nome ?>
                             </td>
 
                             <td>
-                                <a href="/cliente/cadastro?id=<?= $item->id ?>"><?= $item->telefone ?></a>
+                                <?= $item->cpf ?>
                             </td>
 
                             <td>
-                                <a href="/cliente/cadastro?id=<?= $item->id ?>"><?= $item->data_nascimento ?></a>
+                                <?= $item->telefone ?>
                             </td>
 
                             <td>
-                                <a href="/cliente/cadastro?id=<?= $item->id ?>"><?= $item->endereco ?></a>
+                                <?= $item->data_nascimento ?>
+                            </td>
+
+                            <td>
+                                <?= $item->endereco ?>
                             </td>
                         </tr>
 
