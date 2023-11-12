@@ -156,6 +156,8 @@
     <button onclick="document.location='/venda/cadastro/carrinho/ver'">Ver Carrinho</button>
     <br><br>
     <button onclick="document.location='/venda/listagem'">Listagem de Vendas</button>
+    <br><br>
+    <button onclick="document.location='/'">Voltar</button>
   </section>
 </body>
 

@@ -171,4 +171,13 @@ class VendaController extends Controller
 
         header('Location: /venda/cadastro/carrinho/ver');
     }
+
+    static public function LimparCarrinho()
+    {
+        parent::IsAuthenticated();
+
+        (new VendaModel())->LimparCarrinho();
+
+        header('Location: /venda/cadastro');
+    }
 }

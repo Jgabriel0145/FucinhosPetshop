@@ -70,5 +70,9 @@
             <?php endif ?>
         </tbody>
     </table>
+    
+    <br><br>
+
+    <button onclick="document.location='/venda/cadastro'">Voltar</button>
 </body>
 </html>

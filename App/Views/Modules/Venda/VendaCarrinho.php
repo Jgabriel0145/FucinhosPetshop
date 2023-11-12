@@ -80,6 +80,12 @@
 
         <tbody>
             <?php foreach($model_venda['servicos'] as $servicos): ?>
+                <?php
+                    if ($servicos[2] == 'P') $servicos[2] = 'Pequeno';
+                    else if ($servicos[2] == 'M') $servicos[2] = 'Médio';
+                    else if ($servicos[2] == 'G') $servicos[2] = 'Grande';
+                ?>
+                
                 <tr>
                     <td>
                         <a href="/venda/cadastro/carrinho/ver/excluir?id=<?= $servicos[0] ?>">X</a>
@@ -161,6 +167,10 @@
 
         <button type="submit">Confimar venda</button>
     </form>
+    
+    <br>
+    
+    <button onclick="document.location='/venda/cadastro/carrinho/ver/limparcarrinho'">Limpar Carrinho</button>
     
 </body>
 </html>

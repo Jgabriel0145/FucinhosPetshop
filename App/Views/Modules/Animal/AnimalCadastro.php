@@ -39,6 +39,11 @@
 
         <tbody>
           <?php foreach ($model_animal->rows as $item) : ?>
+            <?php
+              if ($item->porte == 'P') $item->porte = 'Pequeno';
+              else if ($item->porte == 'M') $item->porte = 'Médio';
+              else if ($item->porte == 'G') $item->porte = 'Grande';
+            ?>
 
             <tr>
               <td>
