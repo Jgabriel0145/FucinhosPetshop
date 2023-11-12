@@ -30,11 +30,6 @@ class VendaModel extends Model
         return $this->rows = (new VendaDAO())->SelectCarrinho();
     }
 
-    public function SearchById($id)
-    {
-        
-    }
-
     public function Delete($id)
     {
         (new VendaDAO())->Delete($id);

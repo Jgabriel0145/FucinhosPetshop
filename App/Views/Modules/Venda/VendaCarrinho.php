@@ -168,5 +168,9 @@
         <button type="submit">Confimar venda</button>
     </form>
     
+    <br>
+    
+    <button onclick="document.location='/venda/cadastro/carrinho/ver/limparcarrinho'">Limpar Carrinho</button>
+    
 </body>
 </html>
