@@ -418,6 +418,11 @@
             margin-top: 20px;
         }
 
+        #list-clientee{
+            margin-left: -450px;
+            margin-top:10px;
+        }
+
         #list-cliente{
             margin-left: -280px;
             margin-top:10px;
@@ -451,6 +456,10 @@
             height: 0px;
             opacity: 0%;
             transition: var(--tran-03);
+        }
+
+        .form-venda{
+            height: 300px;
         }
 
         

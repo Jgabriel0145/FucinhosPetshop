@@ -8,9 +8,9 @@
   <title>Animais</title>
 
   <?php
-    $model_animal = $model[0];
-    $model_cliente = $model[1];
-  ?> 
+  $model_animal = $model[0];
+  $model_cliente = $model[1];
+  ?>
 
   <style>
     label {
@@ -40,9 +40,9 @@
         <tbody>
           <?php foreach ($model_animal->rows as $item) : ?>
             <?php
-              if ($item->porte == 'P') $item->porte = 'Pequeno';
-              else if ($item->porte == 'M') $item->porte = 'Médio';
-              else if ($item->porte == 'G') $item->porte = 'Grande';
+            if ($item->porte == 'P') $item->porte = 'Pequeno';
+            else if ($item->porte == 'M') $item->porte = 'Médio';
+            else if ($item->porte == 'G') $item->porte = 'Grande';
             ?>
 
             <tr>
@@ -72,10 +72,10 @@
 
 
 
-          <?php endforeach ?>
+            <?php endforeach ?>
 
 
-          <?php if (count($model_animal->rows) == 0) : ?>
+            <?php if (count($model_animal->rows) == 0) : ?>
             <tr>
               <td colspan="6">
                 Nenhum registro encontrado
@@ -99,47 +99,53 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form class="row g-3" method="post" action="/animal/cadastro/save" id="form-animal">
+            <form method="post" action="/animal/cadastro/save" id="form-animal">
               <input type="hidden" name="id" value="<?= $model_animal->id ?>">
 
-              <div class="col-10">
+              <div class="mb-3">
                 <label for="nome_cliente" class="form-label">Nome</label>
                 <input class="form-control" type="text" name="nome_animal" id="nome_animal" value="<?= $model_animal->nome ?>">
               </div>
 
-              <div class="col-md-5">
-                <label for="raca_animal" class="form-label">Raça</label>
-                <input type="text" class="form-control" name="raca_animal" id="raca_animal" value="<?= $model_animal->raca ?>">
-              </div>
-
-              <div class="col-md-5">
-                <label for="peso_animal" class="form-label">Peso</label>
-                <input type="text" class="form-control" name="peso_animal" id="peso_animal" value="<?= $model_animal->peso ?>">
-              </div>
-
-              <div class="col-3">
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" id="pequeno_porte_animal" name="porte_animal" value="P" checked>
-                  <label class="form-check-label" for="pequeno_porte_animal">Pequeno</label>
+              <div class="mb-3">
+                <div class="row">
+                  <div class="col">
+                    <label for="raca_animal" class="form-label">Raça</label>
+                    <input type="text" class="form-control" name="raca_animal" id="raca_animal" value="<?= $model_animal->raca ?>">
+                  </div>
+                  <div class="col">
+                    <label for="peso_animal" class="form-label">Peso</label>
+                    <input type="text" class="form-control" name="peso_animal" id="peso_animal" value="<?= $model_animal->peso ?>">
+                  </div>
                 </div>
               </div>
 
-              <div class="col-3">
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" id="medio_porte_animal" name="porte_animal" value="M">
-                  <label class="form-check-label" for="medio_porte_animal">Médio</label>
+              <div class="mb-3">
+                <div class="row">
+                  <div class="col">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" id="pequeno_porte_animal" name="porte_animal" value="P" checked>
+                      <label class="form-check-label" for="pequeno_porte_animal">Pequeno</label>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" id="medio_porte_animal" name="porte_animal" value="M">
+                      <label class="form-check-label" for="medio_porte_animal">Médio</label>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" id="grande_porte_animal" name="porte_animal" value="G">
+                      <label class="form-check-label" for="grande_porte_animal">Grande</label>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              <div class="col-3">
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" id="grande_porte_animal" name="porte_animal" value="G">
-                  <label class="form-check-label" for="grande_porte_animal">Grande</label>
-                </div>
-              </div>
 
 
-              <div class="col-md-10">
+              <div class="md-3">
                 <label for="id_cliente_animal" class="form-label">Cliente</label>
                 <select id="id_cliente_animal" name="id_cliente_animal" class="form-select">
                   <?php if (count($model_cliente->rows) != 0) : ?>
@@ -154,7 +160,7 @@
               </div>
 
 
-              <div class="col-10">
+              <div class="md-3">
                 <button class="btn btn-primary" id="btn-enviar" type="submit">Enviar</button>
               </div>
             </form>

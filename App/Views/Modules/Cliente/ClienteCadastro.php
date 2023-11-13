@@ -37,7 +37,7 @@
 
 
 
-        <section class="box-table" id="list-cliente">
+        <section class="box-table" id="list-clientee">
             <table class="table">
                 <thead>
                     <tr>

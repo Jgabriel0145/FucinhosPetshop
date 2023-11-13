@@ -38,7 +38,7 @@
 <?php include "../App/Views/Includes/Navbar/navbar.php" ?>
   <section class="home">
 
-    <form action="/venda/cadastro/carrinho" method="post">
+    <form action="/venda/cadastro/carrinho" class="form-venda" method="post">
       <input type="hidden" name="id">
 
       <label for="tipo_venda">Tipo</label>
@@ -153,7 +153,7 @@
 
     </form>
 
-    <button onclick="document.location='/venda/cadastro/carrinho/ver'">Ver Carrinho</button>
+    <button id="carrinho" onclick="document.location='/venda/cadastro/carrinho/ver'">Ver Carrinho</button>
     <br><br>
     <button onclick="document.location='/venda/listagem'">Listagem de Vendas</button>
     <br><br>
