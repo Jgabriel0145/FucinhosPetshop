@@ -206,3 +206,4 @@ JOIN servico s ON (fsa.id_servico = s.id)
 JOIN cliente c ON (s.id_cliente = c.id);*/
 
 INSERT INTO funcionario (nome, cpf, email, senha, admin) VALUES ('admin', '11111111111', 'admin@gmail.com', SHA1('admin'), 1);
+INSERT INTO cliente (nome, cpf, telefone, data_nascimento, endereco) VALUES ('Venda Balcão', '00000000000', '14999999999', '2023-01-01', 'Indefinido');
